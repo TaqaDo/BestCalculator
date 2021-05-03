@@ -7,9 +7,6 @@
 
 import UIKit
 
-protocol HomeDisplayLogic: AnyObject {
-    
-}
 
 final class HomeViewController: UIViewController {
     
@@ -43,11 +40,6 @@ final class HomeViewController: UIViewController {
     //
 }
 
-// MARK: - Display Logic
-
-extension HomeViewController: HomeDisplayLogic {
-    
-}
 
 
 
