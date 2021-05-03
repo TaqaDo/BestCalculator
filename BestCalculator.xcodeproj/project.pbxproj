@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,8 @@
 		A2657BEE26404CF30040FBF6 /* BestCalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2657BED26404CF30040FBF6 /* BestCalculatorUITests.swift */; };
 		A2657BFD26404D360040FBF6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2657BFC26404D360040FBF6 /* HomeViewController.swift */; };
 		A2657BFF26404D3F0040FBF6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2657BFE26404D3F0040FBF6 /* HomeView.swift */; };
+		A2657C032640B4270040FBF6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2657C022640B4270040FBF6 /* Extensions.swift */; };
+		A2657C072640B5920040FBF6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2657C062640B5920040FBF6 /* HomeViewModel.swift */; };
 		CE5290B0EC661DD1329E33B8 /* Pods_BestCalculator_BestCalculatorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21A221F0723E8F3139049986 /* Pods_BestCalculator_BestCalculatorUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,8 @@
 		A2657BEF26404CF30040FBF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2657BFC26404D360040FBF6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A2657BFE26404D3F0040FBF6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A2657C022640B4270040FBF6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A2657C062640B5920040FBF6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		AB49D2FEEAB92B7624FCE506 /* Pods_BestCalculatorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestCalculatorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D76BE5EDF56C26ABBCD7C0CA /* Pods-BestCalculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestCalculator.debug.xcconfig"; path = "Target Support Files/Pods-BestCalculator/Pods-BestCalculator.debug.xcconfig"; sourceTree = "<group>"; };
 		D9EC4A80EFA095601944A38B /* Pods-BestCalculatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestCalculatorTests.release.xcconfig"; path = "Target Support Files/Pods-BestCalculatorTests/Pods-BestCalculatorTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -113,7 +117,6 @@
 				EDFF73189F86B88ABC915146 /* Pods-BestCalculatorTests.debug.xcconfig */,
 				D9EC4A80EFA095601944A38B /* Pods-BestCalculatorTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -143,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				A2657BFB26404D1D0040FBF6 /* Scenes */,
+				A2657C012640B4060040FBF6 /* Utils */,
 				A2657BC826404CF10040FBF6 /* AppDelegate.swift */,
 				A2657BCA26404CF10040FBF6 /* SceneDelegate.swift */,
 				A2657BD426404CF20040FBF6 /* Assets.xcassets */,
@@ -182,10 +186,35 @@
 		A2657C002640A37F0040FBF6 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				A2657C042640B5710040FBF6 /* View */,
+				A2657C052640B57E0040FBF6 /* ViewModel */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		A2657C012640B4060040FBF6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A2657C022640B4270040FBF6 /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		A2657C042640B5710040FBF6 /* View */ = {
+			isa = PBXGroup;
+			children = (
 				A2657BFC26404D360040FBF6 /* HomeViewController.swift */,
 				A2657BFE26404D3F0040FBF6 /* HomeView.swift */,
 			);
-			path = Home;
+			path = View;
+			sourceTree = "<group>";
+		};
+		A2657C052640B57E0040FBF6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A2657C062640B5920040FBF6 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -426,6 +455,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2657BC926404CF10040FBF6 /* AppDelegate.swift in Sources */,
+				A2657C032640B4270040FBF6 /* Extensions.swift in Sources */,
+				A2657C072640B5920040FBF6 /* HomeViewModel.swift in Sources */,
 				A2657BCB26404CF10040FBF6 /* SceneDelegate.swift in Sources */,
 				A2657BD326404CF10040FBF6 /* BestCalculator.xcdatamodeld in Sources */,
 				A2657BFF26404D3F0040FBF6 /* HomeView.swift in Sources */,
