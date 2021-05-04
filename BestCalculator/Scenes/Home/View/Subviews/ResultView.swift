@@ -19,17 +19,18 @@ final class ResultView: UIView {
     
     private lazy var inputLabel: UILabel = {
         let label = UILabel()
-        label.text = "112 * 2"
-        label.font = UIFont.systemFont(ofSize: 66, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 76, weight: .light)
         label.textAlignment = .right
         label.textColor = .white
+        label.sizeToFit()
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.1
         return label
     }()
     
     private lazy var outputLabel: UILabel = {
         let label = UILabel()
-        label.text = "11233"
-        label.font = UIFont.systemFont(ofSize: 40, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 56, weight: .light)
         label.textAlignment = .right
         label.textColor = .systemGreen
         return label
@@ -112,7 +113,7 @@ final class ResultView: UIView {
         outputLabel.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalToSuperview().dividedBy(2)
+            make.top.equalTo(inputLabel.snp.bottom)
         }
     }
 }

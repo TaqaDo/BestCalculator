@@ -21,7 +21,7 @@ final class ButtonsCell: UICollectionViewCell {
     
     private lazy var label: UILabel = {
         let view = UILabel()
-        view.font = UIFont.systemFont(ofSize: 26, weight: .regular)
+        view.font = UIFont.systemFont(ofSize: 26, weight: .light)
         view.textColor = .white
         view.textAlignment = .center
         return view

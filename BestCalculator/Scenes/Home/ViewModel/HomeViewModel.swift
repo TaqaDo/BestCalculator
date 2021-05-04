@@ -17,6 +17,9 @@ protocol HomeViewModelInput {
 
 protocol HomeViewModelOutput: AnyObject {
     func setText(text: String)
+    func setResultText(text: String)
+    func setCoordinates()
+    func undoSetCoordinates()
     func reloadController()
 }
 
@@ -39,33 +42,88 @@ class HomeViewModel {
     
     // MARK: - Helper Methods
     
+    private func formatResult(result: Double) -> String {
+        if result.truncatingRemainder(dividingBy: 1) == 0 {
+            return String(format: "%.0f", result)
+        } else {
+            return String(format: "%.2f", result)
+        }
+    }
+    
+    private func cleanNumbers() {
+        if !text.isEmpty {
+            text.removeLast()
+            delegate?.setText(text: text)
+        }
+    }
+    
+    private func coordinates(item: ButtonModel) {
+        
+        text = text + item.title
+        delegate?.setText(text: text)
+        
+        let coordinates = text.contains("X")
+        
+        if coordinates {
+            delegate?.setCoordinates()
+        } else {
+            delegate?.undoSetCoordinates()
+        }
+    }
+    
+    private func operations(item: ButtonModel) {
+        if !text.isEmpty && text.last != "+" && text.last != "-" && text.last != "÷" && text.last != "×" && text.last != "%" && text.last != "," {
+        text = text + item.title
+        delegate?.setText(text: text)
+        }
+    }
+    
+    private func getResult() {
+        let changeChars = text.replacingOccurrences(of: "÷", with: "/")
+        let changeChars2 = changeChars.replacingOccurrences(of: "×", with: "*")
+        let changeChars3 = changeChars2.replacingOccurrences(of: ",", with: ".")
+        let expresion = NSExpression(format: changeChars3)
+        guard let result = expresion.expressionValue(with: nil, context: nil) as? Double else {return}
+        let resultString = formatResult(result: result)
+        text = resultString
+        delegate?.setText(text: resultString)
+    }
+    
+    
     private func handlerOperation(_ item: ButtonModel) {
         if let operation = item.operation {
             print("handlerOperation \(item.title ?? "title is nil") \(operation)")
             
             switch operation {
             case .multiplication:
-                break
+                operations(item: item)
+                
             case .division:
-                break
+                operations(item: item)
+                
             case .deduction:
-                break
+                operations(item: item)
+                
             case .addition:
-                text = text + item.title
-                delegate?.setText(text: text)
+                operations(item: item)
+                
             case .percent:
-                break
+                operations(item: item)
+                
             case .comma:
-                break
+                operations(item: item)
+                
             case .clean:
-                break
+                cleanNumbers()
+                
             case .braces:
-                break
+                operations(item: item)
+                
             case .result:
-                let expresion = NSExpression(format: text)
-                let result = expresion.expressionValue(with: nil, context: nil) as! Double
+                getResult()
+                
             case .systemCoordinate:
-                break
+                coordinates(item: item)
             }
         } else {
             delegate?.setText(text: "Error")
@@ -97,7 +155,7 @@ extension HomeViewModel: HomeViewModelInput {
 
         buttonModels.append(ButtonModel(type: Type.value, title: "4", value: 4, colorHex: "#485063"))
         buttonModels.append(ButtonModel(type: Type.value, title: "5", value: 5, colorHex: "#485063"))
-        buttonModels.append(ButtonModel(type: Type.value, title: "6", value: 6, colorHex: "#485063"))
+        buttonModels.append(ButtonModel(type: Type.value, title: "6",  value: 6, colorHex: "#485063"))
         buttonModels.append(ButtonModel(type: Type.operation, title: "×", operation: Operation.multiplication, colorHex: "#5d6475"))
 
         buttonModels.append(ButtonModel(type: Type.value, title: "3", value: 3, colorHex: "#485063"))

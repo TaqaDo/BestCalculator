@@ -41,8 +41,8 @@ final class HomeViewController: UIViewController {
     // MARK: - Private Methods
     
     private func configure() {
-        configureResultView()
         configureButtonsView()
+        configureResultView()
     }
     
     private func configureButtonsView() {
@@ -50,7 +50,7 @@ final class HomeViewController: UIViewController {
         buttonsView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(view.safeArea.bottom)
-            make.height.equalToSuperview().dividedBy(1.755)
+            make.height.equalToSuperview().dividedBy(1.75)
         }
         
         buttonsView.setCollectionView(withDataSourceAndDelegate: self)
@@ -61,7 +61,7 @@ final class HomeViewController: UIViewController {
         resultView.snp.makeConstraints { make in
             make.top.equalTo(view.safeArea.top)
             make.leading.trailing.equalToSuperview()
-            make.height.equalToSuperview().dividedBy(2.5)
+            make.bottom.equalTo(buttonsView.snp.top)
         }
     }
     
@@ -81,6 +81,23 @@ extension HomeViewController: ButtonsCellDelegate {
 // MARK: - HomeViewModelOutput
 
 extension HomeViewController: HomeViewModelOutput {
+    func undoSetCoordinates() {
+        configureResultView()
+    }
+    
+    func setCoordinates() {
+        resultView.removeFromSuperview()
+        view.addSubview(resultView)
+        resultView.snp.makeConstraints { make in
+            make.leading.trailing.top.equalToSuperview()
+            make.height.equalTo(230)
+        }
+    }
+    
+    func setResultText(text: String) {
+        resultView.getOutputLabel().text = text
+    }
+    
     func setText(text: String) {
         resultView.getInputLabel().text = text
     }
