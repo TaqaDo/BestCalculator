@@ -32,7 +32,7 @@ final class CoordinatesView: UIView {
   // MARK: - Private Methods
   
   private func configure() {
-    backgroundColor = .init(hex: "#343d52")
+    backgroundColor = .lightGray
     addSubviews()
     addConstraints()
   }

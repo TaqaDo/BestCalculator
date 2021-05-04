@@ -51,7 +51,8 @@ class HomeViewModel {
             case .deduction:
                 break
             case .addition:
-                break
+                text = text + item.title
+                delegate?.setText(text: text)
             case .percent:
                 break
             case .comma:
@@ -61,7 +62,8 @@ class HomeViewModel {
             case .braces:
                 break
             case .result:
-                break
+                let expresion = NSExpression(format: text)
+                let result = expresion.expressionValue(with: nil, context: nil) as! Double
             case .systemCoordinate:
                 break
             }
@@ -72,7 +74,8 @@ class HomeViewModel {
         
     private func handlerValue(_ item: ButtonModel) {
         if let value = item.value {
-            print("handlerValue \(value)")
+            text = text + item.title
+            delegate?.setText(text: text)
         }
     }
     
@@ -111,9 +114,7 @@ extension HomeViewModel: HomeViewModelInput {
     
     
     func clickToItem(item: ButtonModel) {
-        text = text + item.title
-        delegate?.setText(text: text)
-        
+            
         if item.type == Type.operation {
             handlerOperation(item)
         } else if item.type == Type.value {

@@ -37,6 +37,7 @@ final class HomeViewController: UIViewController {
         viewModel.fetchButons()
     }
     
+    
     // MARK: - Private Methods
     
     private func configure() {
@@ -81,7 +82,7 @@ extension HomeViewController: ButtonsCellDelegate {
 
 extension HomeViewController: HomeViewModelOutput {
     func setText(text: String) {
-        print("\(text)")
+        resultView.getInputLabel().text = text
     }
     
     func reloadController() {
