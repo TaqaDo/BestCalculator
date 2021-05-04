@@ -8,6 +8,23 @@
 import UIKit
 import SnapKit
 
+
+extension UICollectionViewCell {
+    static var cellID: String {
+        return className
+    }
+}
+
+extension NSObject {
+    var className: String {
+        return type(of: self).className
+    }
+    
+    static var className: String {
+        return String(describing: self)
+    }
+}
+
 extension UIColor {
     convenience init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)

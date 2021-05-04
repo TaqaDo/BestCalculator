@@ -17,9 +17,13 @@
 		A2657BE326404CF30040FBF6 /* BestCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2657BE226404CF30040FBF6 /* BestCalculatorTests.swift */; };
 		A2657BEE26404CF30040FBF6 /* BestCalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2657BED26404CF30040FBF6 /* BestCalculatorUITests.swift */; };
 		A2657BFD26404D360040FBF6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2657BFC26404D360040FBF6 /* HomeViewController.swift */; };
-		A2657BFF26404D3F0040FBF6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2657BFE26404D3F0040FBF6 /* HomeView.swift */; };
+		A2657BFF26404D3F0040FBF6 /* CoordinatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2657BFE26404D3F0040FBF6 /* CoordinatesView.swift */; };
 		A2657C032640B4270040FBF6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2657C022640B4270040FBF6 /* Extensions.swift */; };
 		A2657C072640B5920040FBF6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2657C062640B5920040FBF6 /* HomeViewModel.swift */; };
+		A27B5EAD26414DEE00B589D9 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27B5EAC26414DEE00B589D9 /* ResultView.swift */; };
+		A27B5EAF26414DF800B589D9 /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27B5EAE26414DF800B589D9 /* ButtonsView.swift */; };
+		A27B5EB22641592900B589D9 /* ButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27B5EB12641592900B589D9 /* ButtonsCell.swift */; };
+		A27B5EB526415BF800B589D9 /* ButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27B5EB426415BF800B589D9 /* ButtonModel.swift */; };
 		CE5290B0EC661DD1329E33B8 /* Pods_BestCalculator_BestCalculatorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21A221F0723E8F3139049986 /* Pods_BestCalculator_BestCalculatorUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,9 +63,13 @@
 		A2657BED26404CF30040FBF6 /* BestCalculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestCalculatorUITests.swift; sourceTree = "<group>"; };
 		A2657BEF26404CF30040FBF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2657BFC26404D360040FBF6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		A2657BFE26404D3F0040FBF6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A2657BFE26404D3F0040FBF6 /* CoordinatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatesView.swift; sourceTree = "<group>"; };
 		A2657C022640B4270040FBF6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A2657C062640B5920040FBF6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		A27B5EAC26414DEE00B589D9 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		A27B5EAE26414DF800B589D9 /* ButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
+		A27B5EB12641592900B589D9 /* ButtonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsCell.swift; sourceTree = "<group>"; };
+		A27B5EB426415BF800B589D9 /* ButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModel.swift; sourceTree = "<group>"; };
 		AB49D2FEEAB92B7624FCE506 /* Pods_BestCalculatorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestCalculatorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D76BE5EDF56C26ABBCD7C0CA /* Pods-BestCalculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestCalculator.debug.xcconfig"; path = "Target Support Files/Pods-BestCalculator/Pods-BestCalculator.debug.xcconfig"; sourceTree = "<group>"; };
 		D9EC4A80EFA095601944A38B /* Pods-BestCalculatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestCalculatorTests.release.xcconfig"; path = "Target Support Files/Pods-BestCalculatorTests/Pods-BestCalculatorTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +153,7 @@
 		A2657BC726404CF10040FBF6 /* BestCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				A27B5EB326415BF200B589D9 /* Models */,
 				A2657BFB26404D1D0040FBF6 /* Scenes */,
 				A2657C012640B4060040FBF6 /* Utils */,
 				A2657BC826404CF10040FBF6 /* AppDelegate.swift */,
@@ -203,8 +212,9 @@
 		A2657C042640B5710040FBF6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A27B5EB02641590F00B589D9 /* Cells */,
+				A27B5EAB26414DC300B589D9 /* Subviews */,
 				A2657BFC26404D360040FBF6 /* HomeViewController.swift */,
-				A2657BFE26404D3F0040FBF6 /* HomeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -215,6 +225,32 @@
 				A2657C062640B5920040FBF6 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A27B5EAB26414DC300B589D9 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A27B5EAC26414DEE00B589D9 /* ResultView.swift */,
+				A27B5EAE26414DF800B589D9 /* ButtonsView.swift */,
+				A2657BFE26404D3F0040FBF6 /* CoordinatesView.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		A27B5EB02641590F00B589D9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A27B5EB12641592900B589D9 /* ButtonsCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		A27B5EB326415BF200B589D9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A27B5EB426415BF800B589D9 /* ButtonModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -457,9 +493,13 @@
 				A2657BC926404CF10040FBF6 /* AppDelegate.swift in Sources */,
 				A2657C032640B4270040FBF6 /* Extensions.swift in Sources */,
 				A2657C072640B5920040FBF6 /* HomeViewModel.swift in Sources */,
+				A27B5EB22641592900B589D9 /* ButtonsCell.swift in Sources */,
 				A2657BCB26404CF10040FBF6 /* SceneDelegate.swift in Sources */,
 				A2657BD326404CF10040FBF6 /* BestCalculator.xcdatamodeld in Sources */,
-				A2657BFF26404D3F0040FBF6 /* HomeView.swift in Sources */,
+				A27B5EAD26414DEE00B589D9 /* ResultView.swift in Sources */,
+				A27B5EAF26414DF800B589D9 /* ButtonsView.swift in Sources */,
+				A2657BFF26404D3F0040FBF6 /* CoordinatesView.swift in Sources */,
+				A27B5EB526415BF800B589D9 /* ButtonModel.swift in Sources */,
 				A2657BFD26404D360040FBF6 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

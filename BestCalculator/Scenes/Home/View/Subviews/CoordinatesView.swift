@@ -8,11 +8,11 @@
 import SnapKit
 import UIKit
 
-protocol HomeViewLogic: UIView {
+protocol CoordinatesViewLogic: UIView {
   
 }
 
-final class HomeView: UIView {
+final class CoordinatesView: UIView {
   
   // MARK: - Views
   
@@ -32,7 +32,7 @@ final class HomeView: UIView {
   // MARK: - Private Methods
   
   private func configure() {
-    backgroundColor = .red
+    backgroundColor = .init(hex: "#343d52")
     addSubviews()
     addConstraints()
   }
@@ -48,7 +48,7 @@ final class HomeView: UIView {
 
 // MARK: - OrdersViewLogic
 
-extension HomeView: HomeViewLogic {
+extension CoordinatesView: CoordinatesViewLogic {
   
 }
 
