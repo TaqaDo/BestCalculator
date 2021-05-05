@@ -143,49 +143,26 @@ class HomeViewModel {
             
             switch operation {
             case .multiplication:
-                operations(item: item)
-                delegate?.setResultText(text: "")
-                
+                break
             case .division:
-                operations(item: item)
-                delegate?.setResultText(text: "")
-                
+                break
             case .deduction:
-                operations(item: item)
-                delegate?.setResultText(text: "")
-                
+                break
             case .addition:
-                operations(item: item)
-                delegate?.setResultText(text: "")
-                
+                break
             case .percent:
-                operations(item: item)
-                delegate?.setResultText(text: "")
-                
+                break
             case .comma:
-                if !text.contains(",") {
-                    operations(item: item)
-                }
-                
+               break
             case .clean:
-                cleanNumbers()
-                delegate?.setResultText(text: "")
-                getCleanBottomResult()
-                getResultBottomResult()
-                checkForCoordinates()
                 cleanAll()
                 
             case .braces:
-                operations(item: item)
-                delegate?.setResultText(text: "")
-                
+                break
             case .result:
-                getResult()
-                delegate?.setResultText(text: "")
-                
+                break
             case .systemCoordinate:
-                coordinates(item: item)
-                checkForCoordinates()
+                break
             }
         } else {
             delegate?.setText(text: "Error")
@@ -294,11 +271,7 @@ extension HomeViewModel: HomeViewModelInput {
     func longClickToItem(item: ButtonModel) {
         if item.type == Type.operation {
             longHandlerOperation(item)
-        } else if item.type == Type.value {
-            handlerValue(item)
-        } else {
-            delegate?.setText(text: "Error")
-        }
+        } 
     }
     
     func clickToItem(item: ButtonModel) {
