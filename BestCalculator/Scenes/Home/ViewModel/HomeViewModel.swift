@@ -53,18 +53,11 @@ class HomeViewModel {
         }
     }
     
-    private func formatResult(result: Double) -> String {
-        if result.truncatingRemainder(dividingBy: 1) == 0 {
-            return String(format: "%.0f", result)
-        } else {
-            return String(format: "%.2f", result)
-        }
-    }
-    
     private func cleanNumbers() {
         if !text.isEmpty {
             text.removeLast()
-            delegate?.setText(text: text)
+            let textChanged = text.replacingOccurrences(of: ".", with: ",")
+            delegate?.setText(text: textChanged)
         }
     }
     
@@ -76,20 +69,27 @@ class HomeViewModel {
     
     private func operations(item: ButtonModel) {
         if !text.isEmpty && text.last != "+" && text.last != "-" && text.last != "÷" && text.last != "×" && text.last != "%" && text.last != "," {
-        text = text + item.title
-        delegate?.setText(text: text)
+            text = text + item.title
+            let textChanged = text.replacingOccurrences(of: ".", with: ",")
+            delegate?.setText(text: textChanged)
         }
     }
     
     private func getValueBottomResult() {
         if text.contains("+") || text.contains("-") || text.contains("×")  || text.contains("%") || text.contains("÷") {
-        getBottomResult()
+            getBottomResult()
         }
     }
     
-    private func getClenBottomResult() {
+    private func getResultBottomResult() {
+        if !text.contains("+") && !text.contains("-") && !text.contains("×")  && !text.contains("%") && !text.contains("÷") {
+            delegate?.setResultText(text: "")
+        }
+    }
+    
+    private func getCleanBottomResult() {
         if text.last != "+" && text.last != "-" && text.last != "×" && text.last != "÷" && text.last != "%" {
-        getBottomResult()
+            getBottomResult()
         }
     }
     
@@ -98,7 +98,7 @@ class HomeViewModel {
         let changeChars = text.replacingOccurrences(of: "÷", with: "/")
         let changeChars2 = changeChars.replacingOccurrences(of: "×", with: "*")
         let changeChars3 = changeChars2.replacingOccurrences(of: ",", with: ".")
-        let changeChars4 = changeChars3.replacingOccurrences(of: "%", with: "%")
+        let changeChars4 = changeChars3.replacingOccurrences(of: "%", with: "*0.01")
         let expression = Expression(changeChars4)
         
         do {
@@ -108,15 +108,15 @@ class HomeViewModel {
             print("Error: \(error)")
         }
         text = expression.description
-        delegate?.setText(text: expression.description)
+        let textChanged = text.replacingOccurrences(of: ".", with: ",")
+        delegate?.setText(text: textChanged)
     }
     
     private func getBottomResult() {
         let changeChars = text.replacingOccurrences(of: "÷", with: "/")
         let changeChars2 = changeChars.replacingOccurrences(of: "×", with: "*")
         let changeChars3 = changeChars2.replacingOccurrences(of: ",", with: ".")
-        let changeChars4 = changeChars3.replacingOccurrences(of: "%", with: "%")
-        let expression = Expression(changeChars4)
+        let expression = Expression(changeChars3)
         
         do {
             let result = try expression.evaluate()
@@ -125,7 +125,8 @@ class HomeViewModel {
             print("Error: \(error)")
         }
         
-        delegate?.setResultText(text: expression.description)
+        let textChanged = expression.description.replacingOccurrences(of: ".", with: ",")
+        delegate?.setResultText(text: textChanged)
     }
     
     
@@ -162,7 +163,8 @@ class HomeViewModel {
             case .clean:
                 cleanNumbers()
                 delegate?.setResultText(text: "")
-                getClenBottomResult()
+                getCleanBottomResult()
+                getResultBottomResult()
                 checkForCoordinates()
                 
             case .braces:
@@ -181,14 +183,15 @@ class HomeViewModel {
             delegate?.setText(text: "Error")
         }
     }
-        
+    
     private func handlerValue(_ item: ButtonModel) {
         if item.value != nil {
             text = text + item.title
-            delegate?.setText(text: text)
+            let textChanged = text.replacingOccurrences(of: ".", with: ",")
+            delegate?.setText(text: textChanged)
             delegate?.setResultText(text: "")
             getValueBottomResult()
-
+            
         }
     }
     
@@ -202,17 +205,17 @@ extension HomeViewModel: HomeViewModelInput {
         buttonModels.append(ButtonModel(type: Type.operation, title: "( )", operation: Operation.braces, colorHex: "#485063"))
         buttonModels.append(ButtonModel(type: Type.operation, title: "%", operation: Operation.percent, colorHex: "#485063"))
         buttonModels.append(ButtonModel(type: Type.operation, title: "DEL", operation: Operation.clean, colorHex: "#5d6475"))
-
+        
         buttonModels.append(ButtonModel(type: Type.value, title: "7", value: 7, colorHex: "#485063"))
         buttonModels.append(ButtonModel(type: Type.value, title: "8", value: 8, colorHex: "#485063"))
         buttonModels.append(ButtonModel(type: Type.value, title: "9", value: 9, colorHex: "#485063"))
         buttonModels.append(ButtonModel(type: Type.operation, title: "÷", operation: Operation.division, colorHex: "#5d6475"))
-
+        
         buttonModels.append(ButtonModel(type: Type.value, title: "4", value: 4, colorHex: "#485063"))
         buttonModels.append(ButtonModel(type: Type.value, title: "5", value: 5, colorHex: "#485063"))
         buttonModels.append(ButtonModel(type: Type.value, title: "6",  value: 6, colorHex: "#485063"))
         buttonModels.append(ButtonModel(type: Type.operation, title: "×", operation: Operation.multiplication, colorHex: "#5d6475"))
-
+        
         buttonModels.append(ButtonModel(type: Type.value, title: "3", value: 3, colorHex: "#485063"))
         buttonModels.append(ButtonModel(type: Type.value, title: "2", value: 2, colorHex: "#485063"))
         buttonModels.append(ButtonModel(type: Type.value, title: "1", value: 1, colorHex: "#485063"))
@@ -227,7 +230,7 @@ extension HomeViewModel: HomeViewModelInput {
     
     
     func clickToItem(item: ButtonModel) {
-            
+        
         if item.type == Type.operation {
             handlerOperation(item)
         } else if item.type == Type.value {
