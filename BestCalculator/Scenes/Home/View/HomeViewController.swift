@@ -124,6 +124,23 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.1) {
+            if let cell = collectionView.cellForItem(at: indexPath) as? ButtonsCell {
+                cell.transform = .init(scaleX: 0.94, y: 0.94)
+                
+            }
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.1) {
+            if let cell = collectionView.cellForItem(at: indexPath) as? ButtonsCell {
+                cell.transform = .identity
+            }
+        }
+    }
 }
 
 // MARK: - UICVFlowLayout

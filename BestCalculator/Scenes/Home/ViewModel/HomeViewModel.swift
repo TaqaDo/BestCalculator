@@ -116,7 +116,8 @@ class HomeViewModel {
         let changeChars = text.replacingOccurrences(of: "÷", with: "/")
         let changeChars2 = changeChars.replacingOccurrences(of: "×", with: "*")
         let changeChars3 = changeChars2.replacingOccurrences(of: ",", with: ".")
-        let expression = Expression(changeChars3)
+        let changeChars4 = changeChars3.replacingOccurrences(of: "%", with: "*0.01")
+        let expression = Expression(changeChars4)
         
         do {
             let result = try expression.evaluate()
