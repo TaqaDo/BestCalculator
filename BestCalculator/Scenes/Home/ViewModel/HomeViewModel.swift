@@ -14,6 +14,7 @@ protocol HomeViewModelInput {
     var buttonModels: [ButtonModel] {get set}
     func fetchButons()
     func clickToItem(item: ButtonModel)
+    func longClickToItem(item: ButtonModel)
 }
 
 protocol HomeViewModelOutput: AnyObject {
@@ -229,6 +230,11 @@ extension HomeViewModel: HomeViewModelInput {
         delegate?.reloadController()
     }
     
+    func longClickToItem(item: ButtonModel) {
+        text = ""
+        delegate?.setText(text: "")
+        delegate?.setResultText(text: "")
+    }
     
     func clickToItem(item: ButtonModel) {
         

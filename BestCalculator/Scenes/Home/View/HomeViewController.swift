@@ -73,6 +73,10 @@ final class HomeViewController: UIViewController {
 // MARK: - ButtonsCellDelegate
 
 extension HomeViewController: ButtonsCellDelegate {
+    func longClickRow(item: ButtonModel) {
+        self.viewModel.longClickToItem(item: item)
+    }
+    
     func clickForRow(item: ButtonModel) {
         self.viewModel.clickToItem(item: item)
     }

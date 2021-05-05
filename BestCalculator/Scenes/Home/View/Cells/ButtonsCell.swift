@@ -10,6 +10,7 @@ import SnapKit
 
 protocol ButtonsCellDelegate: AnyObject {
     func clickForRow(item: ButtonModel)
+    func longClickRow(item: ButtonModel)
 }
 
 final class ButtonsCell: UICollectionViewCell {
@@ -28,6 +29,7 @@ final class ButtonsCell: UICollectionViewCell {
     }()
     
     private lazy var gesture:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
+    private lazy var longGesture: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(viewLongTapped))
     
     //
     
@@ -36,7 +38,9 @@ final class ButtonsCell: UICollectionViewCell {
     override init(frame: CGRect = CGRect.zero) {
         super.init(frame: frame)
         configure()
+        
         self.addGestureRecognizer(gesture)
+        self.addGestureRecognizer(longGesture)
     }
     
     required init?(coder _: NSCoder) {
@@ -44,6 +48,13 @@ final class ButtonsCell: UICollectionViewCell {
     }
     
     // MARK: - UI Actions
+    
+    @objc func viewLongTapped() {
+        print("LONG")
+        if let item = self.item {
+            self.delegate?.longClickRow(item: item)
+        }
+    }
     
     @objc func viewTapped() {
         if let item = self.item {
