@@ -94,6 +94,12 @@ class HomeViewModel {
         }
     }
     
+    private func cleanAll() {
+        text = ""
+        delegate?.setText(text: "")
+        delegate?.setResultText(text: "")
+    }
+    
     private func getResult() {
         
         let changeChars = text.replacingOccurrences(of: "÷", with: "/")
@@ -129,6 +135,61 @@ class HomeViewModel {
         
         let textChanged = expression.description.replacingOccurrences(of: ".", with: ",")
         delegate?.setResultText(text: textChanged)
+    }
+    
+    private func longHandlerOperation(_ item: ButtonModel) {
+        if let operation = item.operation {
+            print("handlerOperation \(item.title ?? "title is nil") \(operation)")
+            
+            switch operation {
+            case .multiplication:
+                operations(item: item)
+                delegate?.setResultText(text: "")
+                
+            case .division:
+                operations(item: item)
+                delegate?.setResultText(text: "")
+                
+            case .deduction:
+                operations(item: item)
+                delegate?.setResultText(text: "")
+                
+            case .addition:
+                operations(item: item)
+                delegate?.setResultText(text: "")
+                
+            case .percent:
+                operations(item: item)
+                delegate?.setResultText(text: "")
+                
+            case .comma:
+                if !text.contains(",") {
+                    operations(item: item)
+                }
+                
+            case .clean:
+                cleanNumbers()
+                delegate?.setResultText(text: "")
+                getCleanBottomResult()
+                getResultBottomResult()
+                checkForCoordinates()
+                cleanAll()
+                
+            case .braces:
+                operations(item: item)
+                delegate?.setResultText(text: "")
+                
+            case .result:
+                getResult()
+                delegate?.setResultText(text: "")
+                
+            case .systemCoordinate:
+                coordinates(item: item)
+                checkForCoordinates()
+            }
+        } else {
+            delegate?.setText(text: "Error")
+        }
     }
     
     
@@ -231,9 +292,13 @@ extension HomeViewModel: HomeViewModelInput {
     }
     
     func longClickToItem(item: ButtonModel) {
-        text = ""
-        delegate?.setText(text: "")
-        delegate?.setResultText(text: "")
+        if item.type == Type.operation {
+            longHandlerOperation(item)
+        } else if item.type == Type.value {
+            handlerValue(item)
+        } else {
+            delegate?.setText(text: "Error")
+        }
     }
     
     func clickToItem(item: ButtonModel) {
