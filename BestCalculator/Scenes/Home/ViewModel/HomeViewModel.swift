@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Expression
 
 protocol HomeViewModelInput {
     var text: String {get set}
@@ -42,6 +43,16 @@ class HomeViewModel {
     
     // MARK: - Helper Methods
     
+    private func checkForCoordinates() {
+        let coordinates = text.contains("X")
+        
+        if coordinates {
+            delegate?.setCoordinates()
+        } else {
+            delegate?.undoSetCoordinates()
+        }
+    }
+    
     private func formatResult(result: Double) -> String {
         if result.truncatingRemainder(dividingBy: 1) == 0 {
             return String(format: "%.0f", result)
@@ -61,14 +72,6 @@ class HomeViewModel {
         
         text = text + item.title
         delegate?.setText(text: text)
-        
-        let coordinates = text.contains("X")
-        
-        if coordinates {
-            delegate?.setCoordinates()
-        } else {
-            delegate?.undoSetCoordinates()
-        }
     }
     
     private func operations(item: ButtonModel) {
@@ -79,14 +82,38 @@ class HomeViewModel {
     }
     
     private func getResult() {
+        
         let changeChars = text.replacingOccurrences(of: "÷", with: "/")
         let changeChars2 = changeChars.replacingOccurrences(of: "×", with: "*")
         let changeChars3 = changeChars2.replacingOccurrences(of: ",", with: ".")
-        let expresion = NSExpression(format: changeChars3)
-        guard let result = expresion.expressionValue(with: nil, context: nil) as? Double else {return}
-        let resultString = formatResult(result: result)
-        text = resultString
-        delegate?.setText(text: resultString)
+        let changeChars4 = changeChars3.replacingOccurrences(of: "%", with: "%")
+        let expression = Expression(changeChars4)
+        
+        do {
+            let result = try expression.evaluate()
+            print("Result: \(result)")
+        } catch {
+            print("Error: \(error)")
+        }
+        text = expression.description
+        delegate?.setText(text: expression.description)
+    }
+    
+    private func getBottomResult() {
+        let changeChars = text.replacingOccurrences(of: "÷", with: "/")
+        let changeChars2 = changeChars.replacingOccurrences(of: "×", with: "*")
+        let changeChars3 = changeChars2.replacingOccurrences(of: ",", with: ".")
+        let changeChars4 = changeChars3.replacingOccurrences(of: "%", with: "%")
+        let expression = Expression(changeChars4)
+        
+        do {
+            let result = try expression.evaluate()
+            print("Result: \(result)")
+        } catch {
+            print("Error: \(error)")
+        }
+        
+        delegate?.setResultText(text: expression.description)
     }
     
     
@@ -97,33 +124,43 @@ class HomeViewModel {
             switch operation {
             case .multiplication:
                 operations(item: item)
-                
+                delegate?.setResultText(text: "")
+                checkForCoordinates()
             case .division:
                 operations(item: item)
-                
+                delegate?.setResultText(text: "")
+                checkForCoordinates()
             case .deduction:
                 operations(item: item)
-                
+                delegate?.setResultText(text: "")
+                checkForCoordinates()
             case .addition:
                 operations(item: item)
-                
+                delegate?.setResultText(text: "")
+                checkForCoordinates()
             case .percent:
                 operations(item: item)
-                
+                delegate?.setResultText(text: "")
+                checkForCoordinates()
             case .comma:
                 operations(item: item)
-                
+                delegate?.setResultText(text: "")
+                checkForCoordinates()
             case .clean:
                 cleanNumbers()
-                
+                delegate?.setResultText(text: "")
+                checkForCoordinates()
             case .braces:
                 operations(item: item)
-                
+                delegate?.setResultText(text: "")
+                checkForCoordinates()
             case .result:
                 getResult()
-                
+                delegate?.setResultText(text: "")
+                checkForCoordinates()
             case .systemCoordinate:
                 coordinates(item: item)
+                checkForCoordinates()
             }
         } else {
             delegate?.setText(text: "Error")
@@ -131,9 +168,12 @@ class HomeViewModel {
     }
         
     private func handlerValue(_ item: ButtonModel) {
-        if let value = item.value {
+        if item.value != nil {
             text = text + item.title
             delegate?.setText(text: text)
+            if text.contains("+") || text.contains("-") || text.contains("×") || text.contains("÷") {
+            getBottomResult()
+            }
         }
     }
     

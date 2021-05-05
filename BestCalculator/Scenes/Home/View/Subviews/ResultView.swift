@@ -33,6 +33,9 @@ final class ResultView: UIView {
         label.font = UIFont.systemFont(ofSize: 56, weight: .light)
         label.textAlignment = .right
         label.textColor = .systemGreen
+        label.sizeToFit()
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.1
         return label
     }()
     
