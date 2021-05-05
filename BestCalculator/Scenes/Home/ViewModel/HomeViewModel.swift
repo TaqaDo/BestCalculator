@@ -81,6 +81,18 @@ class HomeViewModel {
         }
     }
     
+    private func getValueBottomResult() {
+        if text.contains("+") || text.contains("-") || text.contains("×")  || text.contains("%") || text.contains("÷") {
+        getBottomResult()
+        }
+    }
+    
+    private func getClenBottomResult() {
+        if text.last != "+" && text.last != "-" && text.last != "×" && text.last != "÷" && text.last != "%" {
+        getBottomResult()
+        }
+    }
+    
     private func getResult() {
         
         let changeChars = text.replacingOccurrences(of: "÷", with: "/")
@@ -125,39 +137,42 @@ class HomeViewModel {
             case .multiplication:
                 operations(item: item)
                 delegate?.setResultText(text: "")
-                checkForCoordinates()
+                
             case .division:
                 operations(item: item)
                 delegate?.setResultText(text: "")
-                checkForCoordinates()
+                
             case .deduction:
                 operations(item: item)
                 delegate?.setResultText(text: "")
-                checkForCoordinates()
+                
             case .addition:
                 operations(item: item)
                 delegate?.setResultText(text: "")
-                checkForCoordinates()
+                
             case .percent:
                 operations(item: item)
                 delegate?.setResultText(text: "")
-                checkForCoordinates()
+                
             case .comma:
-                operations(item: item)
-                delegate?.setResultText(text: "")
-                checkForCoordinates()
+                if !text.contains(",") {
+                    operations(item: item)
+                }
+                
             case .clean:
                 cleanNumbers()
                 delegate?.setResultText(text: "")
+                getClenBottomResult()
                 checkForCoordinates()
+                
             case .braces:
                 operations(item: item)
                 delegate?.setResultText(text: "")
-                checkForCoordinates()
+                
             case .result:
                 getResult()
                 delegate?.setResultText(text: "")
-                checkForCoordinates()
+                
             case .systemCoordinate:
                 coordinates(item: item)
                 checkForCoordinates()
@@ -171,9 +186,9 @@ class HomeViewModel {
         if item.value != nil {
             text = text + item.title
             delegate?.setText(text: text)
-            if text.contains("+") || text.contains("-") || text.contains("×") || text.contains("÷") {
-            getBottomResult()
-            }
+            delegate?.setResultText(text: "")
+            getValueBottomResult()
+
         }
     }
     

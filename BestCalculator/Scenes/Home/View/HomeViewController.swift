@@ -89,8 +89,9 @@ extension HomeViewController: HomeViewModelOutput {
         resultView.removeFromSuperview()
         view.addSubview(resultView)
         resultView.snp.makeConstraints { make in
-            make.leading.trailing.top.equalToSuperview()
-            make.height.equalTo(230)
+            make.top.equalTo(view.safeArea.top)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(200)
         }
     }
     

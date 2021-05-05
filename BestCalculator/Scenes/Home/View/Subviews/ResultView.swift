@@ -111,7 +111,7 @@ final class ResultView: UIView {
         inputLabel.snp.makeConstraints { make in
             make.top.equalTo(navView.snp.bottom)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalToSuperview().dividedBy(2)
+            make.height.equalToSuperview().dividedBy(2.25)
         }
         outputLabel.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
