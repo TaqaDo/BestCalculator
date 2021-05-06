@@ -17,6 +17,7 @@ final class HomeViewController: UIViewController {
     lazy var resultView: ResultViewLogic = ResultView()
     lazy var buttonsView: ButtonsViewLogic = ButtonsView()
     
+    
     // MARK: - Private Properties
     
     private lazy var viewModel: HomeViewModelInput = {
@@ -34,11 +35,16 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        delegates()
         viewModel.fetchButons()
     }
     
     
     // MARK: - Private Methods
+    
+    private func delegates() {
+        coordinatesView.delegate = self
+    }
     
     private func configure() {
         configureButtonsView()
@@ -67,6 +73,8 @@ final class HomeViewController: UIViewController {
     
     // MARK: - UI Actions
     
+
+    
     //
 }
 
@@ -82,6 +90,21 @@ extension HomeViewController: ButtonsCellDelegate {
     }
 }
 
+// MARK: - CoordinateDelegate
+
+extension HomeViewController: CoordinateDelegate {
+    func clickView() {
+        
+        UIView.animate(withDuration: 0.5) {
+            self.buttonsView.getCollectionView().frame.origin.y = self.view.frame.height
+            self.resultView.alpha = 0
+        } completion: { _ in
+            self.resultView.removeFromSuperview()
+            self.buttonsView.removeFromSuperview()
+        }
+    }
+}
+
 // MARK: - HomeViewModelOutput
 
 extension HomeViewController: HomeViewModelOutput {
@@ -90,12 +113,12 @@ extension HomeViewController: HomeViewModelOutput {
     }
     
     func setCoordinates() {
-        resultView.removeFromSuperview()
-        view.addSubview(resultView)
-        resultView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeArea.top)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(200)
+            self.resultView.removeFromSuperview()
+            self.view.addSubview(self.resultView)
+            self.resultView.snp.makeConstraints { make in
+                make.top.equalTo(self.view.safeArea.top)
+                make.leading.trailing.equalToSuperview()
+                make.height.equalTo(200)
         }
     }
     

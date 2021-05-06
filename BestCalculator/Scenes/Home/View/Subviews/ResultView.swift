@@ -11,6 +11,7 @@ import UIKit
 protocol ResultViewLogic: UIView {
     func getInputLabel() -> UILabel
     func getOutputLabel() -> UILabel
+    func getLabelView() -> UIView
 }
 
 final class ResultView: UIView {
@@ -75,6 +76,32 @@ final class ResultView: UIView {
         return view
     }()
     
+    private lazy var labelsView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .init(hex: "#343d52")
+        view.addSubview(inputLabel)
+        view.addSubview(outputLabel)
+        view.addSubview(navView)
+        
+        navView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(30)
+        }
+        
+        inputLabel.snp.makeConstraints { make in
+            make.top.equalTo(navView.snp.bottom)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(100)
+        }
+        outputLabel.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.top.equalTo(inputLabel.snp.bottom)
+        }
+        return view
+    }()
+    
     //
     
     // MARK: - Init
@@ -91,32 +118,20 @@ final class ResultView: UIView {
     // MARK: - Private Methods
     
     private func configure() {
-        backgroundColor = .init(hex: "#343d52")
+        backgroundColor = .clear
         addSubviews()
         addConstraints()
     }
     
     private func addSubviews() {
-        addSubview(inputLabel)
-        addSubview(outputLabel)
-        addSubview(navView)
+        addSubview(labelsView)
     }
     
     private func addConstraints() {
-        navView.snp.makeConstraints { make in
+        labelsView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(30)
-        }
-        inputLabel.snp.makeConstraints { make in
-            make.top.equalTo(navView.snp.bottom)
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(100)
-        }
-        outputLabel.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.top.equalTo(inputLabel.snp.bottom)
         }
     }
 }
@@ -124,6 +139,10 @@ final class ResultView: UIView {
 // MARK: - OrdersViewLogic
 
 extension ResultView: ResultViewLogic {
+    func getLabelView() -> UIView {
+        return labelsView
+    }
+    
     func getInputLabel() -> UILabel {
         return inputLabel
     }

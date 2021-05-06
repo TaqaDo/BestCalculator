@@ -42,7 +42,7 @@ final class ButtonsView: UIView {
     // MARK: - Private Methods
     
     private func configure() {
-        backgroundColor = .blue
+        backgroundColor = .clear
         addSubviews()
         addConstraints()
     }
