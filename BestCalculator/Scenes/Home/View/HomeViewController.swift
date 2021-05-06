@@ -28,10 +28,6 @@ final class HomeViewController: UIViewController {
     
     // MARK: - Lifecycle
     
-    override func loadView() {
-        view = coordinatesView
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -47,8 +43,16 @@ final class HomeViewController: UIViewController {
     }
     
     private func configure() {
+        configureCoordinatesView()
         configureButtonsView()
         configureResultView()
+    }
+    
+    private func configureCoordinatesView() {
+        view.addSubview(coordinatesView)
+        coordinatesView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     private func configureButtonsView() {
@@ -94,13 +98,9 @@ extension HomeViewController: ButtonsCellDelegate {
 
 extension HomeViewController: CoordinateDelegate {
     func clickView() {
-        
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.3) {
             self.buttonsView.getCollectionView().frame.origin.y = self.view.frame.height
             self.resultView.alpha = 0
-        } completion: { _ in
-            self.resultView.removeFromSuperview()
-            self.buttonsView.removeFromSuperview()
         }
     }
 }

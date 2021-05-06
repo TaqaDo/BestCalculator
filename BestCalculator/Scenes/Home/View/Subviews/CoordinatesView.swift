@@ -40,6 +40,7 @@ final class CoordinatesView: UIView {
     // MARK: - UI Actions
     
     @objc func viewTapped() {
+        print("dsfsdfsdf")
         self.delegate?.clickView()
         
     }
