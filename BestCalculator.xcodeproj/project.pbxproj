@@ -12,6 +12,7 @@
 		A251D19726441685004CB582 /* TangensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251D19626441685004CB582 /* TangensView.swift */; };
 		A251D19926442513004CB582 /* TangensCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251D19826442513004CB582 /* TangensCell.swift */; };
 		A251D19B2644255B004CB582 /* TangensModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251D19A2644255B004CB582 /* TangensModel.swift */; };
+		A264C0F8264539F0007D7D76 /* GreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A264C0F7264539F0007D7D76 /* GreenView.swift */; };
 		A2657BC926404CF10040FBF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2657BC826404CF10040FBF6 /* AppDelegate.swift */; };
 		A2657BCB26404CF10040FBF6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2657BCA26404CF10040FBF6 /* SceneDelegate.swift */; };
 		A2657BD326404CF10040FBF6 /* BestCalculator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A2657BD126404CF10040FBF6 /* BestCalculator.xcdatamodeld */; };
@@ -55,6 +56,7 @@
 		A251D19626441685004CB582 /* TangensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangensView.swift; sourceTree = "<group>"; };
 		A251D19826442513004CB582 /* TangensCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangensCell.swift; sourceTree = "<group>"; };
 		A251D19A2644255B004CB582 /* TangensModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangensModel.swift; sourceTree = "<group>"; };
+		A264C0F7264539F0007D7D76 /* GreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenView.swift; sourceTree = "<group>"; };
 		A2657BC526404CF10040FBF6 /* BestCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2657BC826404CF10040FBF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2657BCA26404CF10040FBF6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				A27B5EAE26414DF800B589D9 /* ButtonsView.swift */,
 				A2657BFE26404D3F0040FBF6 /* CoordinatesView.swift */,
 				A251D19626441685004CB582 /* TangensView.swift */,
+				A264C0F7264539F0007D7D76 /* GreenView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				A2657C072640B5920040FBF6 /* HomeViewModel.swift in Sources */,
 				A251D19726441685004CB582 /* TangensView.swift in Sources */,
 				A27B5EB22641592900B589D9 /* ButtonsCell.swift in Sources */,
+				A264C0F8264539F0007D7D76 /* GreenView.swift in Sources */,
 				A251D19B2644255B004CB582 /* TangensModel.swift in Sources */,
 				A2657BCB26404CF10040FBF6 /* SceneDelegate.swift in Sources */,
 				A2657BD326404CF10040FBF6 /* BestCalculator.xcdatamodeld in Sources */,

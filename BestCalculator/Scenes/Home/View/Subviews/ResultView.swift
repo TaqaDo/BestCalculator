@@ -33,7 +33,7 @@ final class ResultView: UIView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 56, weight: .light)
         label.textAlignment = .right
-        label.textColor = .systemGreen
+        label.textColor = .green
         label.sizeToFit()
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.1

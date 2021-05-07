@@ -17,7 +17,7 @@ final class HomeViewController: UIViewController {
     lazy var resultView: ResultViewLogic = ResultView()
     lazy var buttonsView: ButtonsViewLogic = ButtonsView()
     lazy var tangensView: TangensViewLogic = TangensView()
-    lazy var greenView = UIView()
+    lazy var greenView: GreenViewLogic = GreenView()
 
     
     // MARK: - Private Properties
@@ -44,6 +44,7 @@ final class HomeViewController: UIViewController {
         coordinatesView.delegate = self
         buttonsView.delegate = self
         tangensView.delegate = self
+        greenView.delegate = self
     }
     
     private func configure() {
@@ -62,12 +63,12 @@ final class HomeViewController: UIViewController {
     private func configureBottomView() {
         view.addSubview(buttonsView)
         view.addSubview(greenView)
-        greenView.backgroundColor = .green
+        
         greenView.snp.makeConstraints { make in
             make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.bottom.equalTo(view.safeArea.bottom)
             make.height.equalToSuperview().dividedBy(1.75)
-            make.width.equalTo(30)
+            make.width.equalTo(25)
         }
         
         buttonsView.snp.makeConstraints { make in
@@ -95,6 +96,24 @@ final class HomeViewController: UIViewController {
     //
 }
 
+// MARK: - GreenDelegate
+
+extension HomeViewController: GreenDelegate {
+    func clickGreenView() {
+        view.addSubview(tangensView)
+        tangensView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.bottom.equalTo(view.safeArea.bottom)
+            make.height.equalToSuperview().dividedBy(1.75)
+        }
+        
+        UIView.animate(withDuration: 0.4) {
+            self.tangensView.frame.origin.x = self.view.frame.width
+        }
+    }
+}
+
 // MARK: - TangensDelegate
 
 extension HomeViewController: TangensDelegate {
@@ -113,8 +132,8 @@ extension HomeViewController: ButtonsDelegate {
     func swipeLeft() {
         view.addSubview(tangensView)
         tangensView.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
+            make.leading.equalToSuperview()
             make.bottom.equalTo(view.safeArea.bottom)
             make.height.equalToSuperview().dividedBy(1.75)
         }
