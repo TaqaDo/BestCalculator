@@ -286,7 +286,7 @@ class HomeViewModel {
             case .cosMinus1:
                 break
             case .tanMinus1:
-                break
+                delegate?.setText(text: "333")
             case .sinh:
                 break
             case .cosh:
@@ -320,25 +320,28 @@ class HomeViewModel {
 
 extension HomeViewModel: HomeViewModelInput {
     
+    
+    // MARK: - FetchButtons
+    
     func fetchSecondTangens() {
         tangensModels.append(TangensModel(title: "INV", operation: TangensOperation.INV2, colorHex: .clear))
-        tangensModels.append(TangensModel(title: "sin⁻1", operation: TangensOperation.sin, colorHex: .clear))
-        tangensModels.append(TangensModel(title: "cos⁻1", operation: TangensOperation.cos, colorHex: .clear))
-        tangensModels.append(TangensModel(title: "tan⁻1", operation: TangensOperation.tan, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "sin⁻1", operation: TangensOperation.sinhMinus1, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "cos⁻1", operation: TangensOperation.cosMinus1, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "tan⁻1", operation: TangensOperation.tanMinus1, colorHex: .clear))
         
-        tangensModels.append(TangensModel(title: "sinh", operation: TangensOperation.In, colorHex: .clear))
-        tangensModels.append(TangensModel(title: "cosh", operation: TangensOperation.log, colorHex: .clear))
-        tangensModels.append(TangensModel(title: "tanh", operation: TangensOperation.palochkiX, colorHex: .clear))
-        tangensModels.append(TangensModel(title: "i", operation: TangensOperation.vosklicX, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "sinh", operation: TangensOperation.sinh, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "cosh", operation: TangensOperation.cosh, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "tanh", operation: TangensOperation.tanh, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "i", operation: TangensOperation.i, colorHex: .clear))
         
-        tangensModels.append(TangensModel(title: "sinh⁻1", operation: TangensOperation.pi, colorHex: .clear))
-        tangensModels.append(TangensModel(title: "cosh⁻1", operation: TangensOperation.e, colorHex: .clear))
-        tangensModels.append(TangensModel(title: "tanh⁻1", operation: TangensOperation.eX, colorHex: .clear))
-        tangensModels.append(TangensModel(title: "∛", operation: TangensOperation.koren, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "sinh⁻1", operation: TangensOperation.sinhMinus1, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "cosh⁻1", operation: TangensOperation.coshMinus1, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "tanh⁻1", operation: TangensOperation.tanhMinus1, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "∛", operation: TangensOperation.korenTripl, colorHex: .clear))
         
-        tangensModels.append(TangensModel(title: "2ª", operation: TangensOperation.tenX, colorHex: .clear))
-        tangensModels.append(TangensModel(title: "x∸", operation: TangensOperation.twoX, colorHex: .clear))
-        tangensModels.append(TangensModel(title: "x⁻ⁿ", operation: TangensOperation.INV, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "2ª", operation: TangensOperation.squareX, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "x∸", operation: TangensOperation.tripleX, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "x⁻ⁿ", operation: TangensOperation.xMinusY, colorHex: .clear))
         
         delegate?.reloadController()
     }
@@ -365,6 +368,8 @@ extension HomeViewModel: HomeViewModelInput {
         
         delegate?.reloadController()
     }
+    
+    // MARK: - FetchButtons
     
     func fetchButons() {
         buttonModels.append(ButtonModel(type: Type.operation, title: "X", operation: Operation.systemCoordinate, colorHex: "#485063"))

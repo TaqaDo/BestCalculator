@@ -151,7 +151,6 @@ extension HomeViewController: ButtonsDelegate {
 
 extension HomeViewController: TangensCellDelegate {
     func clickForTangensRow(item: TangensModel) {
-        print("okokokokokok")
         self.viewModel.clickToTangensItem(item: item)
     }
 }
@@ -261,7 +260,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         } else {
             UIView.animate(withDuration: 0.1) {
                 if let cell = collectionView.cellForItem(at: indexPath) as? TangensCell {
-                    cell.transform = .init(scaleX: 0.80, y: 0.80)
+                    cell.transform = .init(scaleX: 0.75, y: 0.75)
                     
                 }
             }
