@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol TangensCellDelegate: AnyObject {
-    func clickForRow(item: TangensModel)
+    func clickForTangensRow(item: TangensModel)
 }
 
 final class TangensCell: UICollectionViewCell {
@@ -22,7 +22,7 @@ final class TangensCell: UICollectionViewCell {
     private lazy var label: UILabel = {
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 26, weight: .light)
-        view.textColor = .white
+        view.textColor = .darkGray
         view.textAlignment = .center
         return view
     }()
@@ -36,7 +36,6 @@ final class TangensCell: UICollectionViewCell {
     override init(frame: CGRect = CGRect.zero) {
         super.init(frame: frame)
         configure()
-        
         self.addGestureRecognizer(gesture)
     }
     
@@ -48,14 +47,14 @@ final class TangensCell: UICollectionViewCell {
     
     @objc func viewTapped() {
         if let item = self.item {
-            self.delegate?.clickForRow(item: item)
+            self.delegate?.clickForTangensRow(item: item)
         }
     }
     
     // MARK: - Private Methods
     
     private func configure() {
-        backgroundColor = .systemPink
+        backgroundColor = .clear
         addSubviews()
         addConstraints()
     }
@@ -71,7 +70,7 @@ final class TangensCell: UICollectionViewCell {
     }
     
     func fill(model: TangensModel, delegate: TangensCellDelegate) {
-        backgroundColor = UIColor.init(hex: model.colorHex ?? "#000000")
+        backgroundColor = model.colorHex
         label.text = model.title
         self.delegate = delegate
         self.item = model

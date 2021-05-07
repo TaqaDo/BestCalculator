@@ -50,7 +50,6 @@ final class ButtonsCell: UICollectionViewCell {
     // MARK: - UI Actions
     
     @objc func viewLongTapped() {
-        print("LONG")
         if let item = self.item {
             self.delegate?.longClickRow(item: item)
         }
@@ -65,7 +64,6 @@ final class ButtonsCell: UICollectionViewCell {
     // MARK: - Private Methods
     
     private func configure() {
-        backgroundColor = .systemPink
         addSubviews()
         addConstraints()
     }

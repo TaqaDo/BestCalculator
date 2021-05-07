@@ -27,7 +27,7 @@ final class TangensView: UIView {
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        collView.register(ButtonsCell.self, forCellWithReuseIdentifier: ButtonsCell.cellID)
+        collView.register(TangensCell.self, forCellWithReuseIdentifier: TangensCell.cellID)
         collView.backgroundColor = .green
         collView.isScrollEnabled = false
         return collView
@@ -62,7 +62,7 @@ final class TangensView: UIView {
     // MARK: - Private Methods
     
     private func configure() {
-        backgroundColor = .clear
+        backgroundColor = .systemRed
         addSubviews()
         addConstraints()
     }
@@ -73,7 +73,7 @@ final class TangensView: UIView {
     
     private func addConstraints() {
         collectionView.snp.makeConstraints { make in
-            make.top.leading.trailing.bottom.equalToSuperview()
+            make.edges.equalToSuperview()
         }
     }
 }

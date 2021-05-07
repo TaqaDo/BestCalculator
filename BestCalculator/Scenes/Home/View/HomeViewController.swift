@@ -18,7 +18,7 @@ final class HomeViewController: UIViewController {
     lazy var buttonsView: ButtonsViewLogic = ButtonsView()
     lazy var tangensView: TangensViewLogic = TangensView()
     lazy var greenView: GreenViewLogic = GreenView()
-
+    
     
     // MARK: - Private Properties
     
@@ -35,6 +35,7 @@ final class HomeViewController: UIViewController {
         configure()
         delegates()
         viewModel.fetchButons()
+        viewModel.fetchTangens()
     }
     
     
@@ -87,11 +88,12 @@ final class HomeViewController: UIViewController {
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(buttonsView.snp.top)
         }
+        tangensView.setCollectionView(withDataSourceAndDelegate: self)
     }
     
     // MARK: - UI Actions
     
-
+    
     
     //
 }
@@ -140,11 +142,19 @@ extension HomeViewController: ButtonsDelegate {
         
         UIView.animate(withDuration: 0.4) {
             self.tangensView.frame.origin.x = self.view.frame.width
+            self.tangensView.getCollectionView().reloadData()
         }
     }
 }
 
 // MARK: - ButtonsCellDelegate
+
+extension HomeViewController: TangensCellDelegate {
+    func clickForTangensRow(item: TangensModel) {
+        print("okokokokokok")
+        self.viewModel.clickToTangensItem(item: item)
+    }
+}
 
 extension HomeViewController: ButtonsCellDelegate {
     func longClickRow(item: ButtonModel) {
@@ -172,17 +182,27 @@ extension HomeViewController: CoordinateDelegate {
 // MARK: - HomeViewModelOutput
 
 extension HomeViewController: HomeViewModelOutput {
+    func undoChanges() {
+        viewModel.tangensModels.removeAll()
+        viewModel.fetchTangens()
+    }
+    
+    func changeTangens() {
+        viewModel.tangensModels.removeAll()
+        viewModel.fetchSecondTangens()
+    }
+    
     func undoSetCoordinates() {
         configureResultView()
     }
     
     func setCoordinates() {
-            self.resultView.removeFromSuperview()
-            self.view.addSubview(self.resultView)
-            self.resultView.snp.makeConstraints { make in
-                make.top.equalTo(self.view.safeArea.top)
-                make.leading.trailing.equalToSuperview()
-                make.height.equalTo(200)
+        self.resultView.removeFromSuperview()
+        self.view.addSubview(self.resultView)
+        self.resultView.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeArea.top)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(200)
         }
     }
     
@@ -196,6 +216,7 @@ extension HomeViewController: HomeViewModelOutput {
     
     func reloadController() {
         buttonsView.getCollectionView().reloadData()
+        tangensView.getCollectionView().reloadData()
     }
 }
 
@@ -203,32 +224,63 @@ extension HomeViewController: HomeViewModelOutput {
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        self.viewModel.buttonModels.count
+        if collectionView == buttonsView.getCollectionView() {
+            return self.viewModel.buttonModels.count
+        }
+        
+        return self.viewModel.tangensModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ButtonsCell.cellID, for: indexPath) as? ButtonsCell else {return UICollectionViewCell()}
         
-        let item = self.viewModel.buttonModels[indexPath.row]
+        if collectionView == buttonsView.getCollectionView() {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ButtonsCell.cellID, for: indexPath) as? ButtonsCell else {return UICollectionViewCell()}
+            let item = self.viewModel.buttonModels[indexPath.row]
+            cell.fill(model: item, delegate: self)
+            return cell
+            
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TangensCell.cellID, for: indexPath) as? TangensCell else {return UICollectionViewCell()}
+            let item = self.viewModel.tangensModels[indexPath.row]
+            cell.fill(model: item, delegate: self)
+            return cell
+        }
         
-        cell.fill(model: item, delegate: self)
         
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
-        UIView.animate(withDuration: 0.1) {
-            if let cell = collectionView.cellForItem(at: indexPath) as? ButtonsCell {
-                cell.transform = .init(scaleX: 0.94, y: 0.94)
-                
+        
+        if collectionView == buttonsView.getCollectionView() {
+            UIView.animate(withDuration: 0.1) {
+                if let cell = collectionView.cellForItem(at: indexPath) as? ButtonsCell {
+                    cell.transform = .init(scaleX: 0.90, y: 0.90)
+                    
+                }
+            }
+        } else {
+            UIView.animate(withDuration: 0.1) {
+                if let cell = collectionView.cellForItem(at: indexPath) as? TangensCell {
+                    cell.transform = .init(scaleX: 0.80, y: 0.80)
+                    
+                }
             }
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
-        UIView.animate(withDuration: 0.1) {
-            if let cell = collectionView.cellForItem(at: indexPath) as? ButtonsCell {
-                cell.transform = .identity
+        
+        if collectionView == buttonsView.getCollectionView() {
+            UIView.animate(withDuration: 0.1) {
+                if let cell = collectionView.cellForItem(at: indexPath) as? ButtonsCell {
+                    cell.transform = .identity
+                }
+            }
+        } else {
+            UIView.animate(withDuration: 0.1) {
+                if let cell = collectionView.cellForItem(at: indexPath) as? TangensCell {
+                    cell.transform = .identity
+                }
             }
         }
     }
@@ -241,19 +293,23 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let item = self.viewModel.buttonModels[indexPath.row]
         
-        if item.value == 0 {
-            return CGSize(
-                width: ((self.buttonsView.getCollectionView().frame.width / 4) * 1),
-                height: (self.buttonsView.getCollectionView().frame.height / 5) - 1
-            )
+        if collectionView == buttonsView.getCollectionView() {
+            if item.value == 0 {
+                return CGSize(
+                    width: ((self.buttonsView.getCollectionView().frame.width / 4) * 1),
+                    height: (self.buttonsView.getCollectionView().frame.height / 5) - 1)
+            } else {
+                return CGSize(
+                    width: (self.buttonsView.getCollectionView().frame.width / 4) - 1,
+                    height: (self.buttonsView.getCollectionView().frame.height / 5) - 1)
+            }
         } else {
-            return CGSize(
-                width: (self.buttonsView.getCollectionView().frame.width / 4) - 1,
-                height: (self.buttonsView.getCollectionView().frame.height / 5) - 1
-            )
+                return CGSize(
+                    width: (self.tangensView.getCollectionView().frame.width / 4) - 1,
+                    height: (self.tangensView.getCollectionView().frame.height / 4) - 1)
+            }
         }
-    }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }

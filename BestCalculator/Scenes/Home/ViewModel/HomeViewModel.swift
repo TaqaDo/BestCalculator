@@ -12,8 +12,12 @@ import Expression
 protocol HomeViewModelInput {
     var text: String {get set}
     var buttonModels: [ButtonModel] {get set}
+    var tangensModels: [TangensModel] {get set}
     func fetchButons()
+    func fetchTangens()
+    func fetchSecondTangens()
     func clickToItem(item: ButtonModel)
+    func clickToTangensItem(item: TangensModel)
     func longClickToItem(item: ButtonModel)
 }
 
@@ -23,6 +27,8 @@ protocol HomeViewModelOutput: AnyObject {
     func setCoordinates()
     func undoSetCoordinates()
     func reloadController()
+    func changeTangens()
+    func undoChanges()
 }
 
 // MARK: - ViewModel
@@ -35,6 +41,7 @@ class HomeViewModel {
     
     var text: String = String()
     var buttonModels: [ButtonModel] = []
+    var tangensModels: [TangensModel] = []
     
     // MARK: - Init
     
@@ -137,6 +144,8 @@ class HomeViewModel {
         delegate?.setResultText(text: textChanged)
     }
     
+    // MARK: - Buttons
+    
     private func longHandlerOperation(_ item: ButtonModel) {
         if let operation = item.operation {
             print("handlerOperation \(item.title ?? "title is nil") \(operation)")
@@ -235,11 +244,128 @@ class HomeViewModel {
         }
     }
     
+    // MARK: - Tangens
+    
+    private func handleTangensOperation(item: TangensModel) {
+        if let operation = item.operation {
+            switch operation {
+            case .INV2:
+                delegate?.undoChanges()
+            case .INV:
+                delegate?.changeTangens()
+            case .sin:
+                delegate?.setText(text: "LOH")
+            case .cos:
+                break
+            case .tan:
+                break
+            case .In:
+                break
+            case .log:
+                break
+            case .palochkiX:
+                break
+            case .vosklicX:
+                break
+            case .pi:
+                break
+            case .e:
+                break
+            case .eX:
+                break
+            case .koren:
+                break
+            case .tenX:
+                break
+            case .squareX:
+                break
+            case .yX:
+                break
+            case .sinMinusOne:
+                break
+            case .cosMinus1:
+                break
+            case .tanMinus1:
+                break
+            case .sinh:
+                break
+            case .cosh:
+                break
+            case .tanh:
+                break
+            case .i:
+                break
+            case .sinhMinus1:
+                break
+            case .coshMinus1:
+                break
+            case .tanhMinus1:
+                break
+            case .korenTripl:
+                break
+            case .twoX:
+                break
+            case .tripleX:
+                break
+            case .xMinusY:
+                break
+            }
+        } else {
+            delegate?.setText(text: "Error")
+        }
+    }
 }
 
 // MARK: - Input
 
 extension HomeViewModel: HomeViewModelInput {
+    
+    func fetchSecondTangens() {
+        tangensModels.append(TangensModel(title: "INV", operation: TangensOperation.INV2, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "sin⁻1", operation: TangensOperation.sin, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "cos⁻1", operation: TangensOperation.cos, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "tan⁻1", operation: TangensOperation.tan, colorHex: .clear))
+        
+        tangensModels.append(TangensModel(title: "sinh", operation: TangensOperation.In, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "cosh", operation: TangensOperation.log, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "tanh", operation: TangensOperation.palochkiX, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "i", operation: TangensOperation.vosklicX, colorHex: .clear))
+        
+        tangensModels.append(TangensModel(title: "sinh⁻1", operation: TangensOperation.pi, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "cosh⁻1", operation: TangensOperation.e, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "tanh⁻1", operation: TangensOperation.eX, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "∛", operation: TangensOperation.koren, colorHex: .clear))
+        
+        tangensModels.append(TangensModel(title: "2ª", operation: TangensOperation.tenX, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "x∸", operation: TangensOperation.twoX, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "x⁻ⁿ", operation: TangensOperation.INV, colorHex: .clear))
+        
+        delegate?.reloadController()
+    }
+    
+    func fetchTangens() {
+        tangensModels.append(TangensModel(title: "INV", operation: TangensOperation.INV, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "sin", operation: TangensOperation.sin, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "cos", operation: TangensOperation.cos, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "tan", operation: TangensOperation.tan, colorHex: .clear))
+        
+        tangensModels.append(TangensModel(title: "In", operation: TangensOperation.In, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "log", operation: TangensOperation.log, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "|x|", operation: TangensOperation.palochkiX, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "x!", operation: TangensOperation.vosklicX, colorHex: .clear))
+        
+        tangensModels.append(TangensModel(title: "∏", operation: TangensOperation.pi, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "e", operation: TangensOperation.e, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "eª", operation: TangensOperation.eX, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "√", operation: TangensOperation.koren, colorHex: .clear))
+        
+        tangensModels.append(TangensModel(title: "10ª", operation: TangensOperation.tenX, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "x⨩", operation: TangensOperation.twoX, colorHex: .clear))
+        tangensModels.append(TangensModel(title: "xⁿ", operation: TangensOperation.INV, colorHex: .clear))
+        
+        delegate?.reloadController()
+    }
+    
     func fetchButons() {
         buttonModels.append(ButtonModel(type: Type.operation, title: "X", operation: Operation.systemCoordinate, colorHex: "#485063"))
         buttonModels.append(ButtonModel(type: Type.operation, title: "( )", operation: Operation.braces, colorHex: "#485063"))
@@ -272,6 +398,10 @@ extension HomeViewModel: HomeViewModelInput {
         if item.type == Type.operation {
             longHandlerOperation(item)
         } 
+    }
+    
+    func clickToTangensItem(item: TangensModel) {
+        handleTangensOperation(item: item)
     }
     
     func clickToItem(item: ButtonModel) {
