@@ -1,26 +1,26 @@
 //
-//  ButtonsView.swift
+//  tangensView.swift
 //  BestCalculator
 //
-//  Created by talgar osmonov on 4/5/21.
+//  Created by talgar osmonov on 6/5/21.
 //
 
 import SnapKit
 import UIKit
 
-protocol ButtonsDelegate: AnyObject {
-    func swipeLeft()
+protocol TangensDelegate: AnyObject {
+    func swipeRight()
 }
 
-protocol ButtonsViewLogic: UIView {
+protocol TangensViewLogic: UIView {
     func setCollectionView(withDataSourceAndDelegate: UICollectionViewDelegate & UICollectionViewDataSource) -> UICollectionView
     func getCollectionView() -> UICollectionView
-    var delegate: ButtonsDelegate? {get set}
+    var delegate: TangensDelegate? {get set}
 }
 
-final class ButtonsView: UIView {
+final class TangensView: UIView {
     
-     weak var delegate: ButtonsDelegate?
+    weak var delegate: TangensDelegate?
     
     // MARK: - Views
     
@@ -28,17 +28,16 @@ final class ButtonsView: UIView {
         let layout = UICollectionViewFlowLayout()
         let collView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collView.register(ButtonsCell.self, forCellWithReuseIdentifier: ButtonsCell.cellID)
-        collView.backgroundColor = .init(hex: "717786")
+        collView.backgroundColor = .green
         collView.isScrollEnabled = false
         return collView
     }()
     
-    private lazy var swipeLeft: UISwipeGestureRecognizer = {
-        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeftGesture))
-        swipe.direction = .left
+    private lazy var swipeRight: UISwipeGestureRecognizer = {
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeRightGesture))
+        swipe.direction = .right
         return swipe
     }()
-       
     
     //
     
@@ -47,7 +46,7 @@ final class ButtonsView: UIView {
     override init(frame: CGRect = CGRect.zero) {
         super.init(frame: frame)
         configure()
-        self.addGestureRecognizer(swipeLeft)
+        self.addGestureRecognizer(swipeRight)
     }
     
     required init?(coder _: NSCoder) {
@@ -56,8 +55,8 @@ final class ButtonsView: UIView {
     
     // MARK: - UI Actions
     
-    @objc func swipeLeftGesture() {
-        delegate?.swipeLeft()
+    @objc func swipeRightGesture() {
+        delegate?.swipeRight()
     }
     
     // MARK: - Private Methods
@@ -81,7 +80,8 @@ final class ButtonsView: UIView {
 
 // MARK: - OrdersViewLogic
 
-extension ButtonsView: ButtonsViewLogic {
+extension TangensView: TangensViewLogic {
+    
     func setCollectionView(withDataSourceAndDelegate: UICollectionViewDataSource & UICollectionViewDelegate) -> UICollectionView {
         collectionView.delegate = withDataSourceAndDelegate
         collectionView.dataSource = withDataSourceAndDelegate
@@ -93,5 +93,6 @@ extension ButtonsView: ButtonsViewLogic {
     }
     
 }
+
 
 

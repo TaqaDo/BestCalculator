@@ -16,7 +16,9 @@ final class HomeViewController: UIViewController {
     lazy var coordinatesView: CoordinatesViewLogic = CoordinatesView()
     lazy var resultView: ResultViewLogic = ResultView()
     lazy var buttonsView: ButtonsViewLogic = ButtonsView()
-    
+    lazy var tangensView: TangensViewLogic = TangensView()
+    lazy var greenView = UIView()
+
     
     // MARK: - Private Properties
     
@@ -40,11 +42,13 @@ final class HomeViewController: UIViewController {
     
     private func delegates() {
         coordinatesView.delegate = self
+        buttonsView.delegate = self
+        tangensView.delegate = self
     }
     
     private func configure() {
         configureCoordinatesView()
-        configureButtonsView()
+        configureBottomView()
         configureResultView()
     }
     
@@ -55,14 +59,23 @@ final class HomeViewController: UIViewController {
         }
     }
     
-    private func configureButtonsView() {
+    private func configureBottomView() {
         view.addSubview(buttonsView)
+        view.addSubview(greenView)
+        greenView.backgroundColor = .green
+        greenView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.height.equalToSuperview().dividedBy(1.75)
+            make.width.equalTo(30)
+        }
+        
         buttonsView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.trailing.equalTo(greenView.snp.leading)
             make.bottom.equalTo(view.safeArea.bottom)
             make.height.equalToSuperview().dividedBy(1.75)
         }
-        
         buttonsView.setCollectionView(withDataSourceAndDelegate: self)
     }
     
@@ -82,6 +95,36 @@ final class HomeViewController: UIViewController {
     //
 }
 
+// MARK: - TangensDelegate
+
+extension HomeViewController: TangensDelegate {
+    func swipeRight() {
+        UIView.animate(withDuration: 0.4) {
+            self.tangensView.frame.origin.x = self.view.frame.height
+        } completion: { _ in
+            self.tangensView.removeFromSuperview()
+        }
+    }
+}
+
+// MARK: - ButtonsDelegate
+
+extension HomeViewController: ButtonsDelegate {
+    func swipeLeft() {
+        view.addSubview(tangensView)
+        tangensView.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeArea.bottom)
+            make.height.equalToSuperview().dividedBy(1.75)
+        }
+        
+        UIView.animate(withDuration: 0.4) {
+            self.tangensView.frame.origin.x = self.view.frame.width
+        }
+    }
+}
+
 // MARK: - ButtonsCellDelegate
 
 extension HomeViewController: ButtonsCellDelegate {
@@ -99,7 +142,9 @@ extension HomeViewController: ButtonsCellDelegate {
 extension HomeViewController: CoordinateDelegate {
     func clickView() {
         UIView.animate(withDuration: 0.3) {
-            self.buttonsView.getCollectionView().frame.origin.y = self.view.frame.height
+            self.buttonsView.frame.origin.y = self.view.frame.height
+            self.greenView.frame.origin.y = self.view.frame.height
+            self.tangensView.frame.origin.y = self.view.frame.height
             self.resultView.alpha = 0
         }
     }
