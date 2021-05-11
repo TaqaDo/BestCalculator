@@ -16,6 +16,7 @@ protocol CoordinateDelegate: AnyObject {
 
 protocol CoordinatesViewLogic: UIView {
     var delegate: CoordinateDelegate? {get set}
+    var yResult: ((_ xArgument: Double) -> Double)? { get set }
 }
 
 final class CoordinatesView: UIView {

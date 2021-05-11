@@ -188,6 +188,10 @@ extension HomeViewController: CoordinateDelegate {
 // MARK: - HomeViewModelOutput
 
 extension HomeViewController: HomeViewModelOutput {
+    func setGraph(data: @escaping (Double) -> Double) {
+        coordinatesView.yResult = data
+    }
+   
     func undoChanges() {
         viewModel.tangensModels.removeAll()
         viewModel.fetchTangens()

@@ -23,6 +23,7 @@ protocol HomeViewModelInput {
 
 protocol HomeViewModelOutput: AnyObject {
     func setText(text: String)
+    func setGraph(data: @escaping(Double) -> Double)
     func setResultText(text: String)
     func setCoordinates()
     func undoSetCoordinates()
@@ -36,6 +37,7 @@ protocol HomeViewModelOutput: AnyObject {
 class HomeViewModel {
     
     private weak var delegate: HomeViewModelOutput?
+    private var memory = CalculatorMemory()
     
     // MARK: - Properties
     
@@ -50,6 +52,7 @@ class HomeViewModel {
     }
     
     // MARK: - Helper Methods
+    
     
     private func checkForCoordinates() {
         let coordinates = text.contains("X")
@@ -73,6 +76,22 @@ class HomeViewModel {
         
         text = text + item.title
         delegate?.setText(text: text)
+        
+        let yFunction = { (xArgument: Double) -> Double in
+            if self.memory.storage == nil {
+                self.memory.storage = ["𝒙": xArgument]
+            } else {
+                self.memory.storage!["𝒙"] = xArgument
+            }
+            
+            let fraction = Double.random(in: 0.1..<2.6)
+            
+            guard let result = Double(self.text) else {return fraction}
+            
+            return result
+        }
+        
+        delegate?.setGraph(data: yFunction)
     }
     
     private func operations(item: ButtonModel) {

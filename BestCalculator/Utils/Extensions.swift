@@ -8,6 +8,54 @@
 import UIKit
 import SnapKit
 
+extension Double {
+    var roundedToIntIfNeededString: String {
+        if floor(self) == self {
+            return String(format: "%.0f", self)
+        }
+        
+        return "\(self)"
+    }
+    
+    var factorial: Double {
+        if self == 0 {
+            return 1
+        }
+        
+        if self.rounded() != self {
+            return Double.nan
+        }
+        
+        if self > Double(Int.max) {
+            return Double.nan
+        }
+        
+        let value = Int(self)
+        var result = NSDecimalNumber(value: 1)
+        
+        let range: ClosedRange = self < 0 ? (value...(-1)) : (1...value)
+        for i in range.reversed() {
+            let behavior = NSDecimalNumberHandler.init(roundingMode: .plain, scale: 17, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+            result = result.multiplying(by: NSDecimalNumber(value: i), withBehavior: behavior)
+            
+            if result.doubleValue.isNaN {
+                return Double.nan
+            }
+        }
+        
+        return result.doubleValue
+    }
+    
+    func rounded(to decimalPlaces: Int) -> Double {
+        let multiplier = pow(10.0, Double(decimalPlaces))
+        return (self * multiplier).rounded() / multiplier
+    }
+}
+
+
+struct CalculatorMemory {
+    var storage: Dictionary<String, Double>?
+}
 
 extension CGPoint {
     
@@ -168,10 +216,10 @@ struct GCColor {
     
     static func graph(forDarkMode darkMode: Bool) -> UIColor {
         if darkMode {
-            return UIColor(red: 216, green: 140, blue: 62, alpha: 1)
+            return UIColor.green
         }
         
-        return UIColor(red: 255, green: 73, blue: 94, alpha: 1)
+        return UIColor.green
     }
 }
 
