@@ -93,6 +93,3 @@ extension TangensView: TangensViewLogic {
     }
     
 }
-
-
-

@@ -373,7 +373,7 @@ extension HomeViewModel: HomeViewModelInput {
     
     func fetchButons() {
         buttonModels.append(ButtonModel(type: Type.operation, title: "X", operation: Operation.systemCoordinate, colorHex: "#485063"))
-        buttonModels.append(ButtonModel(type: Type.operation, title: "( )", operation: Operation.braces, colorHex: "#485063"))
+        buttonModels.append(ButtonModel(type: Type.operation, title: "()", operation: Operation.braces, colorHex: "#485063"))
         buttonModels.append(ButtonModel(type: Type.operation, title: "%", operation: Operation.percent, colorHex: "#485063"))
         buttonModels.append(ButtonModel(type: Type.operation, title: "DEL", operation: Operation.clean, colorHex: "#5d6475"))
         

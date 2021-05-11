@@ -38,6 +38,12 @@ final class HomeViewController: UIViewController {
         viewModel.fetchTangens()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        
+    }
+    
     
     // MARK: - Private Methods
     
@@ -97,6 +103,7 @@ final class HomeViewController: UIViewController {
     
     //
 }
+
 
 // MARK: - GreenDelegate
 
@@ -303,11 +310,11 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
                     height: (self.buttonsView.getCollectionView().frame.height / 5) - 1)
             }
         } else {
-                return CGSize(
-                    width: (self.tangensView.getCollectionView().frame.width / 4) - 1,
-                    height: (self.tangensView.getCollectionView().frame.height / 4) - 1)
-            }
+            return CGSize(
+                width: (self.tangensView.getCollectionView().frame.width / 4) - 1,
+                height: (self.tangensView.getCollectionView().frame.height / 4) - 1)
         }
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1

@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		0AC10A9BB997DEB18CB8DBAA /* Pods_BestCalculatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB49D2FEEAB92B7624FCE506 /* Pods_BestCalculatorTests.framework */; };
 		7B0BFF9B168E4DBCBE20C169 /* Pods_BestCalculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55FC56081C109144D4252FD6 /* Pods_BestCalculator.framework */; };
+		A247C646264AB61500732C7C /* GraphDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247C645264AB61500732C7C /* GraphDrawer.swift */; };
+		A247C648264AB6B100732C7C /* AxesDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247C647264AB6B100732C7C /* AxesDrawer.swift */; };
+		A247C64A264AB6D200732C7C /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247C649264AB6D200732C7C /* GraphView.swift */; };
+		A247C64C264AB88F00732C7C /* GCStringArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247C64B264AB88F00732C7C /* GCStringArray.swift */; };
+		A247C64E264AB8AB00732C7C /* GCString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247C64D264AB8AB00732C7C /* GCString.swift */; };
 		A251D19726441685004CB582 /* TangensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251D19626441685004CB582 /* TangensView.swift */; };
 		A251D19926442513004CB582 /* TangensCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251D19826442513004CB582 /* TangensCell.swift */; };
 		A251D19B2644255B004CB582 /* TangensModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251D19A2644255B004CB582 /* TangensModel.swift */; };
@@ -53,6 +58,11 @@
 		21A221F0723E8F3139049986 /* Pods_BestCalculator_BestCalculatorUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestCalculator_BestCalculatorUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55FC56081C109144D4252FD6 /* Pods_BestCalculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestCalculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A16F0C2A9AED7A00F275A648 /* Pods-BestCalculator-BestCalculatorUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestCalculator-BestCalculatorUITests.release.xcconfig"; path = "Target Support Files/Pods-BestCalculator-BestCalculatorUITests/Pods-BestCalculator-BestCalculatorUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A247C645264AB61500732C7C /* GraphDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphDrawer.swift; sourceTree = "<group>"; };
+		A247C647264AB6B100732C7C /* AxesDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxesDrawer.swift; sourceTree = "<group>"; };
+		A247C649264AB6D200732C7C /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		A247C64B264AB88F00732C7C /* GCStringArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCStringArray.swift; sourceTree = "<group>"; };
+		A247C64D264AB8AB00732C7C /* GCString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCString.swift; sourceTree = "<group>"; };
 		A251D19626441685004CB582 /* TangensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangensView.swift; sourceTree = "<group>"; };
 		A251D19826442513004CB582 /* TangensCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangensCell.swift; sourceTree = "<group>"; };
 		A251D19A2644255B004CB582 /* TangensModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangensModel.swift; sourceTree = "<group>"; };
@@ -213,6 +223,11 @@
 			isa = PBXGroup;
 			children = (
 				A2657C022640B4270040FBF6 /* Extensions.swift */,
+				A247C645264AB61500732C7C /* GraphDrawer.swift */,
+				A247C647264AB6B100732C7C /* AxesDrawer.swift */,
+				A247C649264AB6D200732C7C /* GraphView.swift */,
+				A247C64B264AB88F00732C7C /* GCStringArray.swift */,
+				A247C64D264AB8AB00732C7C /* GCString.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -504,15 +519,20 @@
 			files = (
 				A251D19926442513004CB582 /* TangensCell.swift in Sources */,
 				A2657BC926404CF10040FBF6 /* AppDelegate.swift in Sources */,
+				A247C64E264AB8AB00732C7C /* GCString.swift in Sources */,
 				A2657C032640B4270040FBF6 /* Extensions.swift in Sources */,
+				A247C646264AB61500732C7C /* GraphDrawer.swift in Sources */,
 				A2657C072640B5920040FBF6 /* HomeViewModel.swift in Sources */,
+				A247C64C264AB88F00732C7C /* GCStringArray.swift in Sources */,
 				A251D19726441685004CB582 /* TangensView.swift in Sources */,
 				A27B5EB22641592900B589D9 /* ButtonsCell.swift in Sources */,
 				A264C0F8264539F0007D7D76 /* GreenView.swift in Sources */,
 				A251D19B2644255B004CB582 /* TangensModel.swift in Sources */,
 				A2657BCB26404CF10040FBF6 /* SceneDelegate.swift in Sources */,
 				A2657BD326404CF10040FBF6 /* BestCalculator.xcdatamodeld in Sources */,
+				A247C64A264AB6D200732C7C /* GraphView.swift in Sources */,
 				A27B5EAD26414DEE00B589D9 /* ResultView.swift in Sources */,
+				A247C648264AB6B100732C7C /* AxesDrawer.swift in Sources */,
 				A27B5EAF26414DF800B589D9 /* ButtonsView.swift in Sources */,
 				A2657BFF26404D3F0040FBF6 /* CoordinatesView.swift in Sources */,
 				A27B5EB526415BF800B589D9 /* ButtonModel.swift in Sources */,
