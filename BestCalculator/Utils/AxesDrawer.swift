@@ -10,20 +10,14 @@ import UIKit
 struct AxesDrawer
 {
     var color: UIColor
-    var contentScaleFactor: CGFloat             // set this from UIView's contentScaleFactor to position axes with maximum accuracy
-    var minimumPointsPerHashmark: CGFloat = 30  // public even though init doesn't accommodate setting it (it's rare to want to change it)
+    var contentScaleFactor: CGFloat
+    var minimumPointsPerHashmark: CGFloat = 30
 
     init(color: UIColor = UIColor.blue, contentScaleFactor: CGFloat = 1) {
         self.color = color
         self.contentScaleFactor = contentScaleFactor
     }
-    
-    // this method is the heart of the AxesDrawer
-    // it draws in the current graphic context's coordinate system
-    // therefore origin and bounds must be in the current graphics context's coordinate system
-    // pointsPerUnit is essentially the "scale" of the axes
-    // e.g. if you wanted there to be 100 points along an axis between -1 and 1,
-    //    you'd set pointsPerUnit to 50
+
 
     func drawAxes(in rect: CGRect, origin: CGPoint, pointsPerUnit: CGFloat)
     {
@@ -45,14 +39,12 @@ struct AxesDrawer
         static let hashmarkSize: CGFloat = 6
     }
     
-    private let formatter = NumberFormatter() // formatter for the hashmark labels
+    private let formatter = NumberFormatter()
     
     private func drawHashmarks(in rect: CGRect, origin: CGPoint, pointsPerUnit: CGFloat)
     {
         if ((origin.x >= rect.minX) && (origin.x <= rect.maxX)) || ((origin.y >= rect.minY) && (origin.y <= rect.maxY))
         {
-            // figure out how many units each hashmark must represent
-            // to respect both pointsPerUnit and minimumPointsPerHashmark
             var unitsPerHashmark = minimumPointsPerHashmark / pointsPerUnit
             if unitsPerHashmark < 1 {
                 unitsPerHashmark = pow(10, ceil(log10(unitsPerHashmark)))
@@ -62,7 +54,7 @@ struct AxesDrawer
 
             let pointsPerHashmark = pointsPerUnit * unitsPerHashmark
             
-            // figure out which is the closest set of hashmarks (radiating out from the origin) that are in rect
+           
             var startingHashmarkRadius: CGFloat = 1
             if !rect.contains(origin) {
                 let leftx = max(origin.x - rect.maxX, 0)
@@ -72,15 +64,15 @@ struct AxesDrawer
                 startingHashmarkRadius = min(min(leftx, rightx), min(downy, upy)) / pointsPerHashmark + 1
             }
             
-            // pick a reasonable number of fraction digits
+            
             formatter.maximumFractionDigits = Int(-log10(Double(unitsPerHashmark)))
             formatter.minimumIntegerDigits = 1
 
-            // now create a bounding box inside whose edges those four hashmarks lie
+            
             let bboxSize = pointsPerHashmark * startingHashmarkRadius * 2
             var bbox = CGRect(center: origin, size: CGSize(width: bboxSize, height: bboxSize))
 
-            // radiate the bbox out until the hashmarks are further out than the rect
+            
             while !bbox.contains(rect)
             {
                 let label = formatter.string(from: (origin.x-bbox.minX)/pointsPerUnit)!

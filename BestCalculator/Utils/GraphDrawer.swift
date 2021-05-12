@@ -10,7 +10,7 @@ import UIKit
 struct GraphDrawer {
 
     var color: UIColor
-    var contentScaleFactor: CGFloat          // set this from UIView's contentScaleFactor to position axes with maximum accuracy
+    var contentScaleFactor: CGFloat  
     
     init(color: UIColor = .black, contentScaleFactor: CGFloat = 1) {
         self.color = color
