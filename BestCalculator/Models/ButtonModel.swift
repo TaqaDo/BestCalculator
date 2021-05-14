@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum Type {
     case value
@@ -33,10 +34,9 @@ struct ButtonModel {
     var title: String!
     var value: Int?
     var operation: Operation?
-    
-    var colorHex: String?
+    var colorHex: UIColor?
 
-    init(type: Type, title: String, value: Int? = nil, operation: Operation? = nil, colorHex: String? = nil) {
+    init(type: Type, title: String, value: Int? = nil, operation: Operation? = nil, colorHex: UIColor? = nil) {
         self.type = type
         self.title = title
         self.value = value

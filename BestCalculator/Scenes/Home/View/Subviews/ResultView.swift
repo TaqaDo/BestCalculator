@@ -78,7 +78,7 @@ final class ResultView: UIView {
     
     private lazy var labelsView: UIView = {
         let view = UIView()
-        view.backgroundColor = .init(hex: "#343d52")
+        view.backgroundColor = .darkColor
         view.addSubview(inputLabel)
         view.addSubview(outputLabel)
         view.addSubview(navView)

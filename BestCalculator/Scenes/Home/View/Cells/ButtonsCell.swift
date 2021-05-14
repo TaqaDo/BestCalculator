@@ -79,7 +79,7 @@ final class ButtonsCell: UICollectionViewCell {
     }
     
     func fill(model: ButtonModel, delegate: ButtonsCellDelegate) {
-        backgroundColor = UIColor.init(hex: model.colorHex ?? "#000000")
+        backgroundColor = model.colorHex
         label.text = model.title
         self.delegate = delegate
         self.item = model
