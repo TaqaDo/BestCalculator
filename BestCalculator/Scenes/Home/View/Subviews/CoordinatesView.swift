@@ -78,6 +78,7 @@ final class CoordinatesView: UIView {
         button.setTitle("⊕", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 36)
         button.tintColor = .lightGray
+        button.addTarget(self, action: #selector(handleZoom), for: .touchUpInside)
         return button
     }()
     
@@ -86,6 +87,7 @@ final class CoordinatesView: UIView {
         button.setTitle("⊝", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 36)
         button.tintColor = .lightGray
+        button.addTarget(self, action: #selector(handleUnZoom), for: .touchUpInside)
         return button
     }()
     
@@ -94,6 +96,7 @@ final class CoordinatesView: UIView {
         button.setTitle("⊕", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 36)
         button.tintColor = .lightGray
+        button.addTarget(self, action: #selector(handleDefaultZoom), for: .touchUpInside)
         return button
     }()
     
@@ -148,7 +151,7 @@ final class CoordinatesView: UIView {
         super.init(frame: frame)
         configure()
         self.addGestureRecognizer(gesture)
-        
+    
     }
     
     required init?(coder _: NSCoder) {
@@ -165,6 +168,18 @@ final class CoordinatesView: UIView {
     
     @objc func handleExit() {
         self.delegate?.exitClick()
+    }
+    
+    @objc func handleZoom() {
+        graphView.scaleConstant = graphView.scaleConstant + 1
+    }
+    
+    @objc func handleUnZoom() {
+        graphView.scaleConstant = graphView.scaleConstant - 1
+    }
+    
+    @objc func handleDefaultZoom() {
+        graphView.scaleConstant = 30
     }
     
     // MARK: - Private Methods
@@ -207,4 +222,5 @@ extension CoordinatesView: CoordinatesViewLogic {
         return graphView
     }
 }
+
 
