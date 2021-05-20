@@ -8,13 +8,26 @@
 import SnapKit
 import UIKit
 
+protocol ResultDelegates: AnyObject {
+    func swipeDown()
+}
+
 protocol ResultViewLogic: UIView {
     func getInputLabel() -> UILabel
     func getOutputLabel() -> UILabel
     func getLabelView() -> UIView
+    var delegate: ResultDelegates? {get set}
 }
 
 final class ResultView: UIView {
+    
+    weak var delegate: ResultDelegates?
+    
+    private lazy var swipeDown: UISwipeGestureRecognizer = {
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeDownGesture))
+        swipe.direction = .down
+        return swipe
+    }()
     
     // MARK: - Views
     
@@ -109,11 +122,19 @@ final class ResultView: UIView {
     override init(frame: CGRect = CGRect.zero) {
         super.init(frame: frame)
         configure()
+        self.addGestureRecognizer(swipeDown)
     }
     
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - UI Action
+    
+    @objc func swipeDownGesture() {
+        delegate?.swipeDown()
+    }
+    
     
     // MARK: - Private Methods
     
@@ -134,6 +155,8 @@ final class ResultView: UIView {
             make.bottom.equalToSuperview()
         }
     }
+    
+    
 }
 
 // MARK: - OrdersViewLogic

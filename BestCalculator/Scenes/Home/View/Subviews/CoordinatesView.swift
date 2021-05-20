@@ -163,7 +163,6 @@ final class CoordinatesView: UIView {
     
     @objc func viewTapped() {
         self.delegate?.clickView()
-        
     }
     
     @objc func handleExit() {

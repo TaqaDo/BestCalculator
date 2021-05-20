@@ -46,6 +46,7 @@ final class HomeViewController: UIViewController {
         buttonsView.delegate = self
         tangensView.delegate = self
         greenView.delegate = self
+        resultView.delegate = self
     }
     
     private func configure() {
@@ -113,6 +114,15 @@ final class HomeViewController: UIViewController {
     //
 }
 
+// MARK: - ResultDelegates
+
+extension HomeViewController: ResultDelegates {
+    func swipeDown() {
+        self.navigationController?.present(HistoryViewController(), animated: true, completion: nil)
+
+    }
+}
+
 
 // MARK: - GreenDelegate
 
@@ -152,13 +162,15 @@ extension HomeViewController: ButtonsDelegate {
     }
 }
 
-// MARK: - ButtonsCellDelegate
+// MARK: - TangensCellDelegate
 
 extension HomeViewController: TangensCellDelegate {
     func clickForTangensRow(item: TangensModel) {
         self.viewModel.clickToTangensItem(item: item)
     }
 }
+
+// MARK: - ButtonsCellDelegate
 
 extension HomeViewController: ButtonsCellDelegate {
     func longClickRow(item: ButtonModel) {

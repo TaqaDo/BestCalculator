@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20E241" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Equation" representedClassName=".Equation" syncable="YES">
+        <attribute name="inputResult" optional="YES" attributeType="String" defaultValueString="0"/>
+        <attribute name="outputResult" optional="YES" attributeType="String" defaultValueString="0"/>
+    </entity>
+    <elements>
+        <element name="Equation" positionX="241.36328125" positionY="-16513.140625" width="128" height="73"/>
+    </elements>
 </model>

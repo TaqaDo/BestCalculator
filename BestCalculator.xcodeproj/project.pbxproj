@@ -29,10 +29,16 @@
 		A2657BFF26404D3F0040FBF6 /* CoordinatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2657BFE26404D3F0040FBF6 /* CoordinatesView.swift */; };
 		A2657C032640B4270040FBF6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2657C022640B4270040FBF6 /* Extensions.swift */; };
 		A2657C072640B5920040FBF6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2657C062640B5920040FBF6 /* HomeViewModel.swift */; };
+		A2700FBB26542CBD001A876B /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2700FBA26542CBD001A876B /* DataStoreManager.swift */; };
 		A27B5EAD26414DEE00B589D9 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27B5EAC26414DEE00B589D9 /* ResultView.swift */; };
 		A27B5EAF26414DF800B589D9 /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27B5EAE26414DF800B589D9 /* ButtonsView.swift */; };
 		A27B5EB22641592900B589D9 /* ButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27B5EB12641592900B589D9 /* ButtonsCell.swift */; };
 		A27B5EB526415BF800B589D9 /* ButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27B5EB426415BF800B589D9 /* ButtonModel.swift */; };
+		A28B71B22652726C0049AF5C /* Equation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28B71B12652726C0049AF5C /* Equation+CoreDataClass.swift */; };
+		A294920826564E91005BE1D4 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29491FF26564E91005BE1D4 /* HistoryViewController.swift */; };
+		A294920B26564E91005BE1D4 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A294920226564E91005BE1D4 /* HistoryView.swift */; };
+		A294921026564F25005BE1D4 /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A294920F26564F25005BE1D4 /* HistoryCell.swift */; };
+		A294921326565CCF005BE1D4 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A294921226565CCF005BE1D4 /* HistoryViewModel.swift */; };
 		CE5290B0EC661DD1329E33B8 /* Pods_BestCalculator_BestCalculatorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21A221F0723E8F3139049986 /* Pods_BestCalculator_BestCalculatorUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,10 +90,16 @@
 		A2657BFE26404D3F0040FBF6 /* CoordinatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatesView.swift; sourceTree = "<group>"; };
 		A2657C022640B4270040FBF6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A2657C062640B5920040FBF6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		A2700FBA26542CBD001A876B /* DataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManager.swift; sourceTree = "<group>"; };
 		A27B5EAC26414DEE00B589D9 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		A27B5EAE26414DF800B589D9 /* ButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
 		A27B5EB12641592900B589D9 /* ButtonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsCell.swift; sourceTree = "<group>"; };
 		A27B5EB426415BF800B589D9 /* ButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModel.swift; sourceTree = "<group>"; };
+		A28B71B12652726C0049AF5C /* Equation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Equation+CoreDataClass.swift"; path = "/Users/talgarosmonov/Documents/IOS/BestCalculator/BestCalculator/Models/Equation+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		A29491FF26564E91005BE1D4 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		A294920226564E91005BE1D4 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		A294920F26564F25005BE1D4 /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
+		A294921226565CCF005BE1D4 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		AB49D2FEEAB92B7624FCE506 /* Pods_BestCalculatorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestCalculatorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D76BE5EDF56C26ABBCD7C0CA /* Pods-BestCalculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestCalculator.debug.xcconfig"; path = "Target Support Files/Pods-BestCalculator/Pods-BestCalculator.debug.xcconfig"; sourceTree = "<group>"; };
 		D9EC4A80EFA095601944A38B /* Pods-BestCalculatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestCalculatorTests.release.xcconfig"; path = "Target Support Files/Pods-BestCalculatorTests/Pods-BestCalculatorTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -176,6 +188,7 @@
 				A2657C012640B4060040FBF6 /* Utils */,
 				A2657BC826404CF10040FBF6 /* AppDelegate.swift */,
 				A2657BCA26404CF10040FBF6 /* SceneDelegate.swift */,
+				A2700FBA26542CBD001A876B /* DataStoreManager.swift */,
 				A2657BD426404CF20040FBF6 /* Assets.xcassets */,
 				A2657BD626404CF20040FBF6 /* LaunchScreen.storyboard */,
 				A2657BD926404CF20040FBF6 /* Info.plist */,
@@ -205,6 +218,7 @@
 		A2657BFB26404D1D0040FBF6 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				A29491FA26564E70005BE1D4 /* History */,
 				A2657C002640A37F0040FBF6 /* Home */,
 			);
 			path = Scenes;
@@ -274,10 +288,54 @@
 		A27B5EB326415BF200B589D9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A28B71B32652734D0049AF5C /* CoreData */,
 				A27B5EB426415BF800B589D9 /* ButtonModel.swift */,
 				A251D19A2644255B004CB582 /* TangensModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		A28B71B32652734D0049AF5C /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				A28B71B12652726C0049AF5C /* Equation+CoreDataClass.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		A29491FA26564E70005BE1D4 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				A294920D26564E9B005BE1D4 /* View */,
+				A294921126565CB9005BE1D4 /* ViewModel */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		A294920D26564E9B005BE1D4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A294920E26564F1B005BE1D4 /* Cell */,
+				A29491FF26564E91005BE1D4 /* HistoryViewController.swift */,
+				A294920226564E91005BE1D4 /* HistoryView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A294920E26564F1B005BE1D4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A294920F26564F25005BE1D4 /* HistoryCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		A294921126565CB9005BE1D4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A294921226565CCF005BE1D4 /* HistoryViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -517,13 +575,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A294921026564F25005BE1D4 /* HistoryCell.swift in Sources */,
 				A251D19926442513004CB582 /* TangensCell.swift in Sources */,
 				A2657BC926404CF10040FBF6 /* AppDelegate.swift in Sources */,
 				A247C64E264AB8AB00732C7C /* GCString.swift in Sources */,
 				A2657C032640B4270040FBF6 /* Extensions.swift in Sources */,
 				A247C646264AB61500732C7C /* GraphDrawer.swift in Sources */,
 				A2657C072640B5920040FBF6 /* HomeViewModel.swift in Sources */,
+				A294920B26564E91005BE1D4 /* HistoryView.swift in Sources */,
+				A294920826564E91005BE1D4 /* HistoryViewController.swift in Sources */,
+				A28B71B22652726C0049AF5C /* Equation+CoreDataClass.swift in Sources */,
 				A247C64C264AB88F00732C7C /* GCStringArray.swift in Sources */,
+				A294921326565CCF005BE1D4 /* HistoryViewModel.swift in Sources */,
 				A251D19726441685004CB582 /* TangensView.swift in Sources */,
 				A27B5EB22641592900B589D9 /* ButtonsCell.swift in Sources */,
 				A264C0F8264539F0007D7D76 /* GreenView.swift in Sources */,
@@ -531,6 +594,7 @@
 				A2657BCB26404CF10040FBF6 /* SceneDelegate.swift in Sources */,
 				A2657BD326404CF10040FBF6 /* BestCalculator.xcdatamodeld in Sources */,
 				A247C64A264AB6D200732C7C /* GraphView.swift in Sources */,
+				A2700FBB26542CBD001A876B /* DataStoreManager.swift in Sources */,
 				A27B5EAD26414DEE00B589D9 /* ResultView.swift in Sources */,
 				A247C648264AB6B100732C7C /* AxesDrawer.swift in Sources */,
 				A27B5EAF26414DF800B589D9 /* ButtonsView.swift in Sources */,

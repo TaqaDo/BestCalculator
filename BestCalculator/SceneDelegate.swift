@@ -19,8 +19,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let homeViewController = HomeViewController()
-        window?.rootViewController = homeViewController
+        
+        let home = UINavigationController(rootViewController: HomeViewController())
+        home.isNavigationBarHidden = true
+        window?.rootViewController = home
         window?.makeKeyAndVisible()
     }
 
@@ -51,8 +53,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
 
-        // Save changes in the application's managed object context when the application transitions to the background.
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 
 

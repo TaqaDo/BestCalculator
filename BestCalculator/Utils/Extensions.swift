@@ -72,6 +72,12 @@ extension UICollectionViewCell {
     }
 }
 
+extension UITableViewCell {
+    static var cellID: String {
+        return className
+    }
+}
+
 extension NSObject {
     var className: String {
         return type(of: self).className

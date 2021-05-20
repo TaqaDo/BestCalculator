@@ -38,6 +38,7 @@ class HomeViewModel {
     
     private weak var delegate: HomeViewModelOutput?
     private var memory = CalculatorMemory()
+    private let dataManager: DataStoreManager = DataStoreManager()
     
     // MARK: - Properties
     
@@ -53,6 +54,31 @@ class HomeViewModel {
     
     // MARK: - Helper Methods
     
+    private func getResultAndSaveToDatabase() {
+        let unchanged = text
+        let changeChars = text.replacingOccurrences(of: "÷", with: "/")
+        let changeChars2 = changeChars.replacingOccurrences(of: "×", with: "*")
+        let changeChars3 = changeChars2.replacingOccurrences(of: ",", with: ".")
+        let changeChars4 = changeChars3.replacingOccurrences(of: "%", with: "*0.01")
+        let expression = Expression(changeChars4)
+        
+        do {
+            let result = try expression.evaluate()
+            print("Result: \(result)")
+        } catch {
+            print("Error: \(error)")
+        }
+        
+        text = expression.description
+        let textChanged = text.replacingOccurrences(of: ".", with: ",")
+        delegate?.setText(text: textChanged)
+        
+        let equation = Equation(context: dataManager.persistentContainer.viewContext)
+        equation.inputResult = unchanged
+        equation.outputResult = text
+        
+        dataManager.saveContext()
+    }
     
     private func checkForCoordinates() {
         let coordinates = text.contains("X")
@@ -184,7 +210,7 @@ class HomeViewModel {
                break
             case .clean:
                 cleanAll()
-                
+                checkForCoordinates()
             case .braces:
                 break
             case .result:
@@ -240,7 +266,7 @@ class HomeViewModel {
                 delegate?.setResultText(text: "")
                 
             case .result:
-                getResult()
+                getResultAndSaveToDatabase()
                 delegate?.setResultText(text: "")
                 
             case .systemCoordinate:
@@ -338,6 +364,7 @@ class HomeViewModel {
 // MARK: - Input
 
 extension HomeViewModel: HomeViewModelInput {
+    
     
     
     // MARK: - FetchButtons
