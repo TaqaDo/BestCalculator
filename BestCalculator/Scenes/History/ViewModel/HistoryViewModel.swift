@@ -37,7 +37,6 @@ class HistoryViewModel {
 extension HistoryViewModel: HistoryViewModelInput {
     func fetchResults() {
         DataStoreManager.shared.fetchRequest.fetchLimit = 15
-        DataStoreManager.shared.fetchRequest.fetchLimit = 15
         DataStoreManager.shared.fetchRequest.sortDescriptors = [sortDescriptor]
         try! DataStoreManager.shared.fetchResultController.performFetch()
     }

@@ -124,7 +124,7 @@ class HomeViewModel {
                 self.memory.storage!["𝒙"] = xArgument
             }
             
-            let fraction = Double.random(in: 0.1..<2.6)
+            let fraction = Double.random(in: 0.1..<20.6)
             
             guard let result = Double(self.text) else {return fraction}
             
