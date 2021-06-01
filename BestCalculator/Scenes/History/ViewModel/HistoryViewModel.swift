@@ -11,7 +11,6 @@ import UIKit
 
 protocol HistoryViewModelInput {
     func fetchResults()
-    var dataManager: DataStoreManager { get set }
 }
 
 protocol HistoryViewModelOutput: AnyObject {
@@ -24,7 +23,6 @@ class HistoryViewModel {
     
     private weak var delegate: HistoryViewModelOutput?
     let sortDescriptor = NSSortDescriptor(key: #keyPath(Equation.inputResult), ascending: true)
-    var dataManager: DataStoreManager = DataStoreManager()
     
     // MARK: - Init
     
@@ -38,8 +36,9 @@ class HistoryViewModel {
 
 extension HistoryViewModel: HistoryViewModelInput {
     func fetchResults() {
-        dataManager.fetchRequest.fetchLimit = 15
-        dataManager.fetchRequest.sortDescriptors = [sortDescriptor]
-        try! dataManager.fetchResultController.performFetch()
+        DataStoreManager.shared.fetchRequest.fetchLimit = 15
+        DataStoreManager.shared.fetchRequest.fetchLimit = 15
+        DataStoreManager.shared.fetchRequest.sortDescriptors = [sortDescriptor]
+        try! DataStoreManager.shared.fetchResultController.performFetch()
     }
 }

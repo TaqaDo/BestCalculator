@@ -34,6 +34,7 @@
 		A27B5EAF26414DF800B589D9 /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27B5EAE26414DF800B589D9 /* ButtonsView.swift */; };
 		A27B5EB22641592900B589D9 /* ButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27B5EB12641592900B589D9 /* ButtonsCell.swift */; };
 		A27B5EB526415BF800B589D9 /* ButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27B5EB426415BF800B589D9 /* ButtonModel.swift */; };
+		A2871DFC26652E260032DDC7 /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2871DFB26652E260032DDC7 /* HomeViewModelTests.swift */; };
 		A28B71B22652726C0049AF5C /* Equation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28B71B12652726C0049AF5C /* Equation+CoreDataClass.swift */; };
 		A294920826564E91005BE1D4 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29491FF26564E91005BE1D4 /* HistoryViewController.swift */; };
 		A294920B26564E91005BE1D4 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A294920226564E91005BE1D4 /* HistoryView.swift */; };
@@ -95,6 +96,7 @@
 		A27B5EAE26414DF800B589D9 /* ButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
 		A27B5EB12641592900B589D9 /* ButtonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsCell.swift; sourceTree = "<group>"; };
 		A27B5EB426415BF800B589D9 /* ButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModel.swift; sourceTree = "<group>"; };
+		A2871DFB26652E260032DDC7 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		A28B71B12652726C0049AF5C /* Equation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Equation+CoreDataClass.swift"; path = "/Users/talgarosmonov/Documents/IOS/BestCalculator/BestCalculator/Models/Equation+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		A29491FF26564E91005BE1D4 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		A294920226564E91005BE1D4 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 		A2657BE126404CF30040FBF6 /* BestCalculatorTests */ = {
 			isa = PBXGroup;
 			children = (
+				A2871DFA26652DFC0032DDC7 /* TestHomeModule */,
 				A2657BE226404CF30040FBF6 /* BestCalculatorTests.swift */,
 				A2657BE426404CF30040FBF6 /* Info.plist */,
 			);
@@ -293,6 +296,14 @@
 				A251D19A2644255B004CB582 /* TangensModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		A2871DFA26652DFC0032DDC7 /* TestHomeModule */ = {
+			isa = PBXGroup;
+			children = (
+				A2871DFB26652E260032DDC7 /* HomeViewModelTests.swift */,
+			);
+			path = TestHomeModule;
 			sourceTree = "<group>";
 		};
 		A28B71B32652734D0049AF5C /* CoreData */ = {
@@ -609,6 +620,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2657BE326404CF30040FBF6 /* BestCalculatorTests.swift in Sources */,
+				A2871DFC26652E260032DDC7 /* HomeViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,6 +19,21 @@ protocol HomeViewModelInput {
     func clickToItem(item: ButtonModel)
     func clickToTangensItem(item: TangensModel)
     func longClickToItem(item: ButtonModel)
+    func getResultAndSaveToDatabase()
+    func checkForCoordinates()
+    func cleanNumbers()
+    func coordinates(item: ButtonModel)
+    func operations(item: ButtonModel)
+    func getValueBottomResult()
+    func getResultBottomResult()
+    func getCleanBottomResult()
+    func cleanAll()
+    func getResult()
+    func getBottomResult()
+    func longHandlerOperation(_ item: ButtonModel)
+    func handlerOperation(_ item: ButtonModel)
+    func handlerValue(_ item: ButtonModel)
+    func handleTangensOperation(item: TangensModel)
 }
 
 protocol HomeViewModelOutput: AnyObject {
@@ -38,7 +53,6 @@ class HomeViewModel {
     
     private weak var delegate: HomeViewModelOutput?
     private var memory = CalculatorMemory()
-    private let dataManager: DataStoreManager = DataStoreManager()
     
     // MARK: - Properties
     
@@ -48,13 +62,13 @@ class HomeViewModel {
     
     // MARK: - Init
     
-    init(delegate: HomeViewModelOutput) {
+    init(delegate: HomeViewModelOutput? = nil) {
         self.delegate = delegate
     }
     
     // MARK: - Helper Methods
     
-    private func getResultAndSaveToDatabase() {
+    func getResultAndSaveToDatabase() {
         let unchanged = text
         let changeChars = text.replacingOccurrences(of: "÷", with: "/")
         let changeChars2 = changeChars.replacingOccurrences(of: "×", with: "*")
@@ -73,14 +87,14 @@ class HomeViewModel {
         let textChanged = text.replacingOccurrences(of: ".", with: ",")
         delegate?.setText(text: textChanged)
         
-        let equation = Equation(context: dataManager.persistentContainer.viewContext)
+        let equation = Equation(context: DataStoreManager.shared.persistentContainer.viewContext)
         equation.inputResult = unchanged
         equation.outputResult = text
         
-        dataManager.saveContext()
+        DataStoreManager.shared.saveContext()
     }
     
-    private func checkForCoordinates() {
+    func checkForCoordinates() {
         let coordinates = text.contains("X")
         
         if coordinates {
@@ -90,7 +104,7 @@ class HomeViewModel {
         }
     }
     
-    private func cleanNumbers() {
+    func cleanNumbers() {
         if !text.isEmpty {
             text.removeLast()
             let textChanged = text.replacingOccurrences(of: ".", with: ",")
@@ -98,7 +112,7 @@ class HomeViewModel {
         }
     }
     
-    private func coordinates(item: ButtonModel) {
+    func coordinates(item: ButtonModel) {
         
         text = text + item.title
         delegate?.setText(text: text)
@@ -120,7 +134,7 @@ class HomeViewModel {
         delegate?.setGraph(data: yFunction)
     }
     
-    private func operations(item: ButtonModel) {
+    func operations(item: ButtonModel) {
         if !text.isEmpty && text.last != "+" && text.last != "-" && text.last != "÷" && text.last != "×" && text.last != "%" && text.last != "," {
             text = text + item.title
             let textChanged = text.replacingOccurrences(of: ".", with: ",")
@@ -128,31 +142,31 @@ class HomeViewModel {
         }
     }
     
-    private func getValueBottomResult() {
+    func getValueBottomResult() {
         if text.contains("+") || text.contains("-") || text.contains("×")  || text.contains("%") || text.contains("÷") {
             getBottomResult()
         }
     }
     
-    private func getResultBottomResult() {
+    func getResultBottomResult() {
         if !text.contains("+") && !text.contains("-") && !text.contains("×")  && !text.contains("%") && !text.contains("÷") {
             delegate?.setResultText(text: "")
         }
     }
     
-    private func getCleanBottomResult() {
+    func getCleanBottomResult() {
         if text.last != "+" && text.last != "-" && text.last != "×" && text.last != "÷" && text.last != "%" {
             getBottomResult()
         }
     }
     
-    private func cleanAll() {
+    func cleanAll() {
         text = ""
         delegate?.setText(text: "")
         delegate?.setResultText(text: "")
     }
     
-    private func getResult() {
+    func getResult() {
         
         let changeChars = text.replacingOccurrences(of: "÷", with: "/")
         let changeChars2 = changeChars.replacingOccurrences(of: "×", with: "*")
@@ -171,7 +185,7 @@ class HomeViewModel {
         delegate?.setText(text: textChanged)
     }
     
-    private func getBottomResult() {
+    func getBottomResult() {
         let changeChars = text.replacingOccurrences(of: "÷", with: "/")
         let changeChars2 = changeChars.replacingOccurrences(of: "×", with: "*")
         let changeChars3 = changeChars2.replacingOccurrences(of: ",", with: ".")
@@ -191,7 +205,7 @@ class HomeViewModel {
     
     // MARK: - Buttons
     
-    private func longHandlerOperation(_ item: ButtonModel) {
+    func longHandlerOperation(_ item: ButtonModel) {
         if let operation = item.operation {
             print("handlerOperation \(item.title ?? "title is nil") \(operation)")
             
@@ -224,7 +238,7 @@ class HomeViewModel {
     }
     
     
-    private func handlerOperation(_ item: ButtonModel) {
+    func handlerOperation(_ item: ButtonModel) {
         if let operation = item.operation {
             print("handlerOperation \(item.title ?? "title is nil") \(operation)")
             
@@ -278,7 +292,7 @@ class HomeViewModel {
         }
     }
     
-    private func handlerValue(_ item: ButtonModel) {
+    func handlerValue(_ item: ButtonModel) {
         if item.value != nil {
             text = text + item.title
             let textChanged = text.replacingOccurrences(of: ".", with: ",")
@@ -291,7 +305,7 @@ class HomeViewModel {
     
     // MARK: - Tangens
     
-    private func handleTangensOperation(item: TangensModel) {
+    func handleTangensOperation(item: TangensModel) {
         if let operation = item.operation {
             switch operation {
             case .INV2:

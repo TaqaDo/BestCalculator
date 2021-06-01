@@ -43,7 +43,7 @@ final class HistoryViewController: UIViewController {
     private func delegates() {
         contentView.getTableView().delegate = self
         contentView.getTableView().dataSource = self
-        viewModel.dataManager.fetchResultController.delegate = self
+        DataStoreManager.shared.fetchResultController.delegate = self
     }
     
     private func configure() {
@@ -90,13 +90,13 @@ extension HistoryViewController: NSFetchedResultsControllerDelegate {
 extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = viewModel.dataManager.fetchResultController.sections?[section]
+        let sectionInfo = DataStoreManager.shared.fetchResultController.sections?[section]
         return sectionInfo?.numberOfObjects ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HistoryCell.cellID, for: indexPath) as? HistoryCell else {return UITableViewCell()}
-        let results = viewModel.dataManager.fetchResultController.object(at: indexPath)
+        let results = DataStoreManager.shared.fetchResultController.object(at: indexPath)
         cell.setupData(input: results.inputResult ?? "", output: results.outputResult ?? "")
         return cell
     }
@@ -112,9 +112,9 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         case .none:
             break
         case .delete:
-            let equation = viewModel.dataManager.fetchResultController.object(at: indexPath)
-            viewModel.dataManager.persistentContainer.viewContext.delete(equation)
-            viewModel.dataManager.saveContext()
+            let equation = DataStoreManager.shared.fetchResultController.object(at: indexPath)
+            DataStoreManager.shared.persistentContainer.viewContext.delete(equation)
+            DataStoreManager.shared.saveContext()
         case .insert:
             break
         @unknown default:
