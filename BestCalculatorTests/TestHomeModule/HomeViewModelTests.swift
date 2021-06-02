@@ -139,10 +139,22 @@ class HomeViewModelTests: XCTestCase{
         XCTAssertEqual(viewModelOutput.textTest, "7")
     }
     
+    func testErrorGetResult() {
+        viewModel.text = "ERROR"
+        viewModel.getResult()
+        XCTAssertEqual(viewModelOutput.textTest, "ERROR")
+    }
+    
     func testGetBottomResult() {
         viewModel.text = "10/2"
         viewModel.getBottomResult()
         XCTAssertEqual(viewModelOutput.resultTextTest, "5")
+    }
+    
+    func testErrorGetBottomResult() {
+        viewModel.text = "fail"
+        viewModel.getBottomResult()
+        XCTAssertEqual(viewModelOutput.textTest, "ERROR")
     }
     
     func testGetCleanBottomResult() {

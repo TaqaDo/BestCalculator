@@ -80,6 +80,7 @@ class HomeViewModel {
             let result = try expression.evaluate()
             print("Result: \(result)")
         } catch {
+            delegate?.setText(text: "ERROR")
             print("Error: \(error)")
         }
         
@@ -178,6 +179,7 @@ class HomeViewModel {
             let result = try expression.evaluate()
             print("Result: \(result)")
         } catch {
+            delegate?.setText(text: "ERROR")
             print("Error: \(error)")
         }
         text = expression.description
@@ -196,6 +198,7 @@ class HomeViewModel {
             let result = try expression.evaluate()
             print("Result: \(result)")
         } catch {
+            delegate?.setText(text: "ERROR")
             print("Error: \(error)")
         }
         
